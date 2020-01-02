@@ -26,7 +26,7 @@ app.$typeForm = $('.filter-bar')
 app.$selectType = $('input[type="radio"]')  
 
 // DO NOT DELETE!
-app.SOCRATA_API_TOKEN = [REDACTED]
+app.SOCRATA_API_TOKEN = 'REDACTED'
 app.SOCRATA_API_URL =  'https://data.cityofnewyork.us/resource/fn6f-htvy.json' 
 app.GOOGLEMAPS_API_URL = 'https://www.google.com/maps/search/?api=1&query='//search function 
 
