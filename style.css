@@ -57,20 +57,33 @@ body {
 
 /* default wrapper - DON'T CHANGE */
 .wrapper {
-	width: 90%;
+	width: 85%;
 	max-width: 1050px;
 	margin: 0 auto;
 }
 
 header {
-	padding: 20px; 
+	padding-top: 20px; 
+	background-color: rgb(40, 102, 121);
+	height: 40vh;
+	color: white;
 }
+
+header div {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+header a {
+	font-size: 2.5rem;  
+	display: inline-block;  
+}  
 
 h1 {
 	font-family: 'Carter One', sans-serif;
 	font-size: 3rem; 
-	letter-spacing: 2px;
-	margin-bottom: 25px;
+	letter-spacing: 2px; 
 	display: flex;
 	flex-direction: column;
 }
@@ -79,10 +92,20 @@ h1 span {
 	font-size: 2rem;
 }
 
-main {
-	box-shadow: 15px 15px 50px 5px #e6e6e6;
-	padding: 50px;
-	position: relative;  
+main { 
+	min-height: 60vh;
+	padding-bottom: 50px;
+}
+
+.container {  
+	box-shadow: 0px 10px 30px 10px rgba(180, 180, 180, 0.25); 
+	border-radius: 10px;
+	padding: 40px 60px;
+	position: relative;   
+	top: -120px;
+	background-color: white; 
+	left: 0;
+	right: 0; 
 }
 
 .tag {
@@ -90,30 +113,36 @@ main {
 	text-align: center;
 }
 
-form {
-	font-size: 2rem;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
 h2 {
 	font-size: 2.4rem;
-	margin-top: 20px;
+	text-align: center;
+	margin: 20px 0;
 } 
 
-/* CLICK THRU */
-.click-thru {
-	margin: 15px 0;
+.container form {
+	text-align: center;
+	display: flex; 
+	justify-content: center;
+	align-items: center; 
+	flex-wrap: wrap;
+}
+
+.click-thru,
+input[type="submit"] {
 	height: 50px;
-	width: 250px;
+	width: 225px;
+	margin: 0 10px;
+	border-radius: 5px;
+	font-weight: 600;
+}
+
+/* CLICK THRU */
+.click-thru { 
+	font-size: 2rem;
 	border: 1px solid rgb(241, 241, 241);	
 	background-color: rgb(241, 241, 241);	
-	border-radius: 5px;
 	position: relative;
-	display: flex;
-	font-weight: 400;
+	display: flex; 
 }
 
 .click-thru span {
@@ -140,35 +169,27 @@ h2 {
 
 input[type="submit"] {
 	font-family: 'Open Sans', sans-serif; 
-	width: 250px;
 	padding: 0 20px;
 	font-size: 1.6rem;
-	height: 45px; 
 	border: 1.5px solid rgb(230, 94, 90); 
 	color: white;
-	border-radius: 5px;
     transition-property: all;
 	transition-duration: 0.3s;
 	background-color: rgb(230, 94, 90); 
-	font-weight: 600;
 } 
 
 input[type="submit"]:hover {
     color:  white;
 	background-color: rgb(255, 127, 123); 
 	border: 1.5px solid rgb(255, 127, 123); 
-}
-
-.fa-angle-double-down {
-	font-size: 3rem;
-	color: rgb(190, 190, 190);
-}
-
+} 
+ 
 .filter-bar {
 	display: flex;
-	flex-direction: column;  
-	align-items: flex-end;
-	position: relative;
+	flex-direction: column;
+	align-items: flex-end; 
+	position: relative; 
+	text-align: center; 
 }
 
 label {
@@ -188,9 +209,9 @@ input[type="radio"] {
 ul { 
 	font-size: 1.5rem;   
 	background-color: white;
-	box-shadow: 10px 10px 15px 3px #e6e6e6; 
+	box-shadow: 0px 10px 20px 3px  rgba(180, 180, 180, 0.25); 
 	width: 150px;  
-	top: 30px;
+	top: 25px;
 	position: absolute;
 	display: none; 
 	z-index: 30;
@@ -203,6 +224,11 @@ input[type="checkbox"]:checked + ul{
 li:hover,
 input[type="radio"]:checked + label{
 	background-color: rgb(215, 242, 243);
+}
+
+.results-section {
+	position: relative;
+	top: -80px;
 }
 
 /* results */
@@ -280,28 +306,30 @@ a:focus  {
 	top: 95vh; 
 }
 
-footer { 
-	display: flex;
-	justify-content: center;
-}
-
-footer a {
-	font-size: 2.5rem;  
-	display: inline-block; 
-	padding: 20px; 
-	z-index: 20;
-}  
-
 /* media queries */
+@media (max-width: 767px) { 
 
-@media (max-width: 480px) {
-
-	h1 {
-		text-align: center;
+	.click-thru,
+	input[type="submit"] {
+		margin: 5px 10px;
 	}
 
+}
+
+
+@media (max-width: 480px) { 
+
 	main { 
-		padding: 30px; 
+		padding: 20px; 
+	}
+
+	.container {
+		padding: 40px;
+	}
+
+	.click-thru,
+	input[type="submit"] {
+		margin: 5px 0;
 	}
 
 	h2 {
@@ -310,6 +338,5 @@ footer a {
 
 	.filter-bar {
 		align-items: center;
-		text-align: center;
 	} 
 }
