@@ -26,7 +26,7 @@ app.$typeForm = $('.filter-bar')
 app.$selectType = $('input[type="radio"]')  
 
 // DO NOT DELETE!
-app.SOCRATA_API_TOKEN = 'REDACTED'
+app.SOCRATA_API_TOKEN = [REDACTED]
 app.SOCRATA_API_URL =  'https://data.cityofnewyork.us/resource/fn6f-htvy.json' 
 app.GOOGLEMAPS_API_URL = 'https://www.google.com/maps/search/?api=1&query='//search function 
 
@@ -124,7 +124,7 @@ app.displayResults = (museums) => {
                 <h3>${name}</h3>
                 <p class="address"><i class="fas fa-map-marker-alt"></i> <a href="${mapQuery}" target="_blank">${address}, ${city}, NY </a></p>
                 <a class="url" href="${url}" target="_blank">Visit Website </a>
-                <p>${tel}</p> 
+                <p class="tel">${tel}</p> 
             </div>`; 
         for (let n = 0; n<typeFilter.length; n++) {  
             if (name.includes(typeFilter[n])) { 
