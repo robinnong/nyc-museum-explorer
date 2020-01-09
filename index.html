@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NYC Museum Explorer</title>
     <!-- link to Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,400,600|Carter+One&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Carter+One&display=swap" rel="stylesheet">  
     <!-- link to fontawesome -->
     <script src="https://kit.fontawesome.com/f3369905b3.js" crossorigin="anonymous"></script>
     <!-- link to animations -->
@@ -16,14 +16,17 @@
 </head>
 <body>
     <header id="home">
-        <div class="wrapper">
+        <nav>
             <h1>New York City<span>Museum Explorer</span></h1>
             <a href="https://github.com/robinnong/nyc-museum-explorer"><i class="fab fa-github"></i></a>
+        </nav>
+        <div class="wrapper"> 
+            <p><span>Explore a complete listing of New York City's museums and galleries.</span></p> 
+            <p></span>Search by borough.</span></p>
         </div>
     </header>
     <main>  
         <div class="container wrapper">
-        <p class="tag">Explore a complete listing of New York City's museums and galleries. Filter by borough.</p>
         <h2>Where do you want to go?</h2>
         <form id="city-filter">
             <div class="click-thru">
@@ -35,7 +38,7 @@
             <input type="submit" value="Search Museums">
         </form> 
         </div>
-        <div class="results-section wrapper">
+        <div class="wrapper">
             <form class="filter-bar">
                 <label tabindex="0" for="toggle-menu">Filter by Type <i class="fas fa-angle-down"></i></label>
                 <input type="checkbox" id="toggle-menu" autocomplete="off">
@@ -66,14 +69,15 @@
                     </li>
                 </ul>
             </form> 
-            <div class="scroll-up">
-                <a href="#home"><i class="fas fa-chevron-up"></i> Top</a>
-            </div>
             <section>
             </section>
         </div>
+        <div class="scroll-up">
+            <a href="#home"><i class="fas fa-chevron-up"></i> Top</a>
+        </div>
     </main>
     <footer> 
+        <p> © 2020 Robin Nong. Illustrations by <a href="https://undraw.co">Katerina Limpitsouni.</a></p>
     </footer>
     <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script> 
     <script src="script.js"></script>

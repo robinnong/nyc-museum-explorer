@@ -62,14 +62,42 @@ body {
 	margin: 0 auto;
 }
 
-header {
-	padding-top: 20px; 
-	background-color: rgb(40, 102, 121);
-	height: 40vh;
-	color: white;
+/* FONT SIZING */
+input[type="submit"],
+.filter-bar,
+.result-container {
+	font-size: 1.5rem;
 }
 
-header div {
+h1 span,
+h2,
+h3,
+.click-thru {
+	font-size: 2rem;
+}
+
+h3,
+.click-thru,
+input[type="submit"], 
+.result-container a {
+	font-weight: 600; 
+} 
+
+h2,
+.url,
+.container form,
+.filter-bar,
+footer {
+	text-align: center;
+}
+
+/* HEADER START */
+header {
+	padding: 20px;   
+	height: 40vh; 
+}
+
+header nav {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
@@ -80,80 +108,91 @@ header a {
 	display: inline-block;  
 }  
 
+header p {  
+	font-size: 2.4rem; 
+	line-height: 28px; 
+	font-weight: 300; 
+	margin: 5px; 
+}
+
+header span { 
+	background-color: white; 
+}
+
+header div {
+	height: 100%; 
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+
+	background-image: url(./assets/undraw_art_0tat.svg);  
+	background-size: calc(35vh);
+	background-position: bottom right;
+	background-repeat: no-repeat;    
+	background-position-y: 20px;
+}
+
 h1 {
 	font-family: 'Carter One', sans-serif;
-	font-size: 3rem; 
+	font-size: 2.6rem; 
 	letter-spacing: 2px; 
 	display: flex;
 	flex-direction: column;
 }
 
-h1 span {
-	font-size: 2rem;
-}
-
 main { 
-	min-height: 60vh;
+	min-height: 55vh;
 	padding-bottom: 50px;
+
+	background-image: url(./assets/undraw_art_museum_8or4.svg);  
+	background-size: calc(35vh);
+	background-position: bottom;
+	background-repeat: no-repeat;   
 }
 
 .container {  
 	box-shadow: 0px 10px 30px 10px rgba(180, 180, 180, 0.25); 
 	border-radius: 10px;
-	padding: 40px 60px;
-	position: relative;   
-	top: -120px;
-	background-color: white; 
-	left: 0;
-	right: 0; 
+	padding: 30px;  
+	margin-bottom: 50px;
+	background-color: white;  
 }
-
-.tag {
-	font-size: 1.6rem;
-	text-align: center;
-}
-
-h2 {
-	font-size: 2.4rem;
-	text-align: center;
-	margin: 20px 0;
-} 
 
 .container form {
-	text-align: center;
+	margin-top: 15px;  
 	display: flex; 
 	justify-content: center;
 	align-items: center; 
 	flex-wrap: wrap;
 }
 
+/* CLICK THRU */
 .click-thru,
 input[type="submit"] {
 	height: 50px;
 	width: 225px;
 	margin: 0 10px;
 	border-radius: 5px;
-	font-weight: 600;
 }
 
-/* CLICK THRU */
 .click-thru { 
-	font-size: 2rem;
 	border: 1px solid rgb(241, 241, 241);	
 	background-color: rgb(241, 241, 241);	
 	position: relative;
 	display: flex; 
+	font-weight: 400;
 }
 
 .click-thru span {
-	color: rgb(60, 60, 60);
-	font-size: 2.2rem;
-	margin: auto auto;
+	color: rgb(60, 60, 60); 
+	margin: auto;
 }
 
 .arrows {
 	position: absolute;
-	right:10px;
+	right: 10px;
 	top: 0;
 	display: flex;
 	flex-direction: column;
@@ -162,43 +201,36 @@ input[type="submit"] {
 	font-size: 2.5rem;
 	transition: all 0.2s;  
 }
- 
+
 .click-thru i:hover {
-	color: rgb(57, 153, 160);
+	color: rgb(63, 63, 194);
 }
 
 input[type="submit"] {
-	font-family: 'Open Sans', sans-serif; 
-	padding: 0 20px;
-	font-size: 1.6rem;
-	border: 1.5px solid rgb(230, 94, 90); 
+	background-color: rgb(240, 116, 111); 
+
+	font-family: inherit;
 	color: white;
-    transition-property: all;
+
+	padding: 0 20px;
+	border: 1.5px solid rgb(240, 116, 111); 
+
+	transition-property: all;
 	transition-duration: 0.3s;
-	background-color: rgb(230, 94, 90); 
 } 
 
 input[type="submit"]:hover {
-    color:  white;
-	background-color: rgb(255, 127, 123); 
+	background-color: rgb(255, 127, 123);  
 	border: 1.5px solid rgb(255, 127, 123); 
 } 
  
-.filter-bar {
+.filter-bar { 
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end; 
 	position: relative; 
-	text-align: center; 
-}
-
-label {
-	font-size: 1.5rem; 
-	display: block; 
-}
-
-ul label { 
-	padding: 10px;
+	padding-bottom: 20px;
+	border-bottom: 0.5px solid grey;
 }
 
 input[type="checkbox"],
@@ -206,8 +238,7 @@ input[type="radio"] {
     display: none;
 }  
 
-ul { 
-	font-size: 1.5rem;   
+ul {  
 	background-color: white;
 	box-shadow: 0px 10px 20px 3px  rgba(180, 180, 180, 0.25); 
 	width: 150px;  
@@ -216,43 +247,40 @@ ul {
 	display: none; 
 	z-index: 30;
 } 
- 
+
+ul label { 
+	padding: 10px;
+}
+
+ul label,
 input[type="checkbox"]:checked + ul{
 	display: block;
 }  
- 
+
 li:hover,
 input[type="radio"]:checked + label{
 	background-color: rgb(215, 242, 243);
 }
 
-.results-section {
-	position: relative;
-	top: -80px;
+/* results */
+section {
+ padding-bottom: 150px;
 }
 
-/* results */
 .result-container {
-	margin: 20px 0;
+	margin: 20px;
 	padding-left: 10px;
-	font-size: 1.5rem;
 	display: flex; 
 	justify-content: space-between; 
 	align-items: center;
 	min-height: 50px;  
 }
 
-/* pin icon */
-.result-container i {
-	font-size: 1.5rem;
-}
-
 /* museum name */
 h3 { 
-	font-size: 2rem;  
 	padding-right: 10px;  
 	flex-basis: 40%;
-	flex-shrink: -2;
+	flex-shrink: -2; 
 } 
 
 .address { 
@@ -267,33 +295,26 @@ h3 {
 	flex-shrink: 1;
 }
 
-.url {
-	text-align: center;
-}
-
 .tel {
 	text-align: end;
 }
- 
-/* hover effect on links */
-a:hover,
-a:focus  {
-	color: rgb(57, 153, 160);
+
+.result-container a,
+.tel {
+	color: rgb(60, 60, 60);
 }
 
-.result-container a {
-	color: rgb(57, 153, 160);
-} 
+/* hover effect on links */
+a:hover,
+a:focus,
+footer a  {
+	color: rgb(63, 63, 194);
+}
 
 .result-container a:hover,
 .result-container a:focus {
 	text-decoration: underline;
 }
-
-.address:hover::after,
-.url:hover::after {
-	content: url(./assets/open-new-window.png);
-} 
 
 /* colour tab */
 .art {
@@ -322,8 +343,15 @@ a:focus  {
 	justify-content: flex-end;
 	font-size: 1.8rem;
 	position: sticky;
-	top: 95vh; 
+	bottom: 30px;
+	margin-right: 50px;
 }
+
+footer { 
+	font-size: 1.2rem;
+	height: 5vh;
+	padding: 10px;
+} 
 
 /* media queries */
 @media (max-width: 960px) { 
@@ -338,15 +366,18 @@ a:focus  {
 	}
 }
 
+@media (max-width: 768px) { 
 
-@media (max-width: 767px) { 
+	header p { 
+		margin-left: 30px;  
+		width: 60vw; 
+	}
 
 	.click-thru,
 	input[type="submit"] {
 		margin: 5px 10px;
 	}
 }
-
 
 @media (max-width: 480px) { 
 
@@ -355,16 +386,12 @@ a:focus  {
 	}
 
 	.container {
-		padding: 40px;
+		padding: 30px;
 	}
 
 	.click-thru,
 	input[type="submit"] {
 		margin: 5px 0;
-	}
-
-	h2 {
-		font-size: 2rem;
 	}
 
 	.filter-bar {
