@@ -134,14 +134,14 @@ header div {
 
 h1 {
 	font-family: 'Carter One', sans-serif;
-	font-size: 2.2rem; 
+	font-size: 2rem; 
 	letter-spacing: 1.8px; 
 	display: flex;
 	flex-direction: column;
 }
 
 h1 span {
-	font-size: 1.8rem;
+	font-size: 1.5rem;
 }
 
 main { 
@@ -299,11 +299,11 @@ h3 {
 
 .tel {
 	text-align: end;
+	color: rgb(60, 60, 60);
 }
 
-.result-container a,
-.tel {
-	color: rgb(60, 60, 60);
+.result-container a {
+	text-decoration: underline;
 }
 
 /* hover effect on links */

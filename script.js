@@ -4,17 +4,12 @@
 // When user clicks submit, check which borough the user chose and store user input in a variable
 // Send the user's selection (variable) as a query to New York City Museum API 
 // Get all museum listings for that borough and display as a list 
-// Display the name, contact, address and website for each museum 
-// Make the museum name a link to the website  
+// Display the name, contact, address and website for each museum  
 // Add a link to query Google Maps for the location using the museum name or address 
-// Bonus: Allow user to filter the results by type (Art Gallery, Science, History, etc.)
-// Bonus: Make all links open in a new tab
-// Bonus: Add some animated/transitional effects
+// Allow user to filter the results by type (Art Gallery, Science, History, etc.)
+// Make all links open in a new tab 
  
 const app = {}; //NAMESPACED OBJECT
-
-// CSS STUFF
-$('label, i, input[type="submit"]').addClass('pointer')
 
 // CACHED JQUERY SELECTORS 
 app.$cities = $('.click-thru span') 
@@ -24,6 +19,7 @@ app.$searchResults = $('section')
 app.$cityForm = $('#city-filter')  
 app.$typeForm = $('.filter-bar')
 app.$selectType = $('input[type="radio"]')  
+app.$filterMenuToggle = $('input[type="checkbox"]')
 
 // DO NOT DELETE!
 app.SOCRATA_API_TOKEN = '1eOVPNZ5mpDC6mAyfKeXXR49h'  
@@ -37,8 +33,12 @@ app.citiesArray = ["Brooklyn",
                      "Bronx",
                      "Staten Island"
                     ]           
-
 app.numCities = app.citiesArray.length - 1
+
+// VISIBILITY
+$('button, li, label, i, input[type="submit"]').addClass('pointer')
+$('.scroll-up, .filter-bar').hide() 
+
 
 //KEYWORDS TO FILTER AND ASSIGN MUSEUM TYPES
 app.strArray = [ 
@@ -61,7 +61,7 @@ app.displayCity = () => {
 
 app.toggleCityUp = () => {   
     if (cityIndex > 0) {
-        cityIndex = cityIndex - 1;
+        cityIndex--
     } else {
         cityIndex = app.numCities;
     }
@@ -70,12 +70,36 @@ app.toggleCityUp = () => {
 
 app.toggleCityDown = () => {  
     if (cityIndex < app.numCities) {
-    cityIndex = cityIndex + 1;
+    cityIndex++
     } else {
         cityIndex = 0;
     }
     app.displayCity() 
 } 
+
+app.evaluateCity = () => {
+    const selectedCity = app.citiesArray[cityIndex] 
+    app.getByCity(selectedCity)  
+}
+
+//API CALL
+app.getByCity = (borough) => {  
+    $.ajax({
+        url: app.SOCRATA_API_URL, 
+        method: "GET",
+        dataType: 'json',
+        data: {
+            city: borough,
+            "$limit" : 5000,
+            "$$app_token" : app.SOCRATA_API_TOKEN
+        }
+    }).then((results) => {   
+        app.$searchResults.empty() 
+        app.displayResults(results)   
+    }).catch((error)=> { 
+        console.log(error)
+    })
+};
 
 // ASSIGNS THE COLOUR TAB FOR EACH TYPE 
 app.assignType = function () { 
@@ -136,49 +160,27 @@ app.displayResults = (museums) => {
     $('.scroll-up').show()
 }
 
-app.getByCity = (borough) => {  
-    $.ajax({
-        url: app.SOCRATA_API_URL, 
-        method: "GET",
-        dataType: 'json',
-        data: {
-            city: borough,
-            "$limit" : 5000,
-            "$$app_token" : app.SOCRATA_API_TOKEN
-        }
-    }).then((results) => {   
-        app.$searchResults.empty() 
-        app.displayResults(results)   
-    }).catch((error)=> { 
-        console.log(error)
-    })
-};
-
 app.toggleArrow = () => {
     $('.filter-bar i').toggleClass('fa-angle-up animated fadeIn faster')  
-}
- 
+} 
+
 // INITIALIZE
 app.init = () => { 
-    app.displayCity()   
-    $('li').addClass('pointer')
-    $('.scroll-up, .filter-bar').hide() 
+    app.displayCity()    
     // EVENTS
     app.$toggleUp.on('click', app.toggleCityUp) 
     app.$toggleDown.on('click', app.toggleCityDown) 
-    app.$cityForm.on('submit', function (e) {
+    app.$cityForm.on('submit', function(e) {
         e.preventDefault() 
         $('input[type="radio"]:checked').prop( "checked", false); //default user selection to Show All
-        const selectedCity = app.citiesArray[cityIndex] 
-        app.getByCity(selectedCity) 
+        app.evaluateCity()
         app.$typeForm.show()
     })  
-    app.$selectType.change(function () {  
+    app.$selectType.change(function() {  
         app.getUserFilter() 
-        const selectedCity = app.citiesArray[cityIndex] 
-        app.getByCity(selectedCity) //sometimes if there is not result returned, the drop down menu stops working and I don't know how to fix it  
+        app.evaluateCity()
     })
-    $('input[type="checkbox"]').on('click', app.toggleArrow)
+    app.$filterMenuToggle.on('click', app.toggleArrow) 
 }
 
 // DOCUMENT READY
