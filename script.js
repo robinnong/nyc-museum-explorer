@@ -18,8 +18,8 @@ app.$toggleDown = $('.arrows .fa-angle-down')
 app.$searchResults = $('section') 
 app.$cityForm = $('#city-filter')  
 app.$typeForm = $('.filter-bar')
-app.$selectType = $('input[type="radio"]')  
-app.$filterMenuToggle = $('input[type="checkbox"]')
+app.$selectType = $('input[type="radio"]')   
+app.$filterList = $('ul')
 
 // DO NOT DELETE!
 app.SOCRATA_API_TOKEN = '1eOVPNZ5mpDC6mAyfKeXXR49h'  
@@ -164,10 +164,24 @@ app.toggleArrow = () => {
     $('.filter-bar i').toggleClass('fa-angle-up animated fadeIn faster')  
 } 
 
+app.showUL = () => {
+    app.$filterList.toggle()
+}
+
+app.hide = () => {
+    app.$filterList.hide()
+}
+
 // INITIALIZE
 app.init = () => { 
+    app.$filterList.hide()
     app.displayCity()    
     // EVENTS
+    $('.filter-bar label:first-of-type').on('click', app.showUL)
+    $('li').on('click', function(){
+        app.hide()
+        app.toggleArrow()
+    }) 
     app.$toggleUp.on('click', app.toggleCityUp) 
     app.$toggleDown.on('click', app.toggleCityDown) 
     app.$cityForm.on('submit', function(e) {
@@ -180,7 +194,7 @@ app.init = () => {
         app.getUserFilter() 
         app.evaluateCity()
     })
-    app.$filterMenuToggle.on('click', app.toggleArrow) 
+    $('input[type="checkbox"]').on('click', app.toggleArrow) 
 }
 
 // DOCUMENT READY

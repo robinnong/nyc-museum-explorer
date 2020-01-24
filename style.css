@@ -256,8 +256,7 @@ ul {
 	box-shadow: 0px 10px 20px 3px  rgba(180, 180, 180, 0.25); 
 	width: 150px;  
 	top: 25px;
-	position: absolute;
-	display: none; 
+	position: absolute; 
 	z-index: 30;
 } 
 
@@ -265,7 +264,30 @@ ul label {
 	padding: 10px;
 }
 
-form:hover ul,
+ul i {
+	font-size: 1.2rem;
+}
+
+#art + label i {
+	color: rgb(245, 181, 109);
+}
+
+#science + label i  {
+	color: rgb(59, 153, 130);
+}
+
+#history + label i  {
+	color: rgb(123, 205, 211);
+}
+
+#cultural + label i  {
+	color: rgb(211, 123, 138);
+}
+
+#childrens + label i  {
+	color: rgb(158, 211, 123);
+}
+
 ul label,
 input[type="checkbox"]:checked + ul{
 	display: block;
