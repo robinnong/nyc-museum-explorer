@@ -68,13 +68,14 @@ input[type="submit"],
 .result-container {
 	font-size: 1.5rem;
 }
-
+ 
 h2,
 h3,
 .click-thru {
 	font-size: 2rem;
 }
 
+h2,
 h3,
 .click-thru,
 input[type="submit"], 
@@ -92,6 +93,7 @@ footer {
 
 /* HEADER START */
 header {
+	color: white;
 	padding: 20px;   
 	height: 45vh; 
 	background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -110,15 +112,15 @@ header a {
 	display: inline-block;  
 }  
 
+
 header p:first-of-type {
 	font-weight: 400;
-	font-size: 2.4rem; 
+	font-size: 2.8rem;  
 } 
 
 header p {  
-	color: white;
 	font-size: 2.2rem; 
-	line-height: 34px; 
+	line-height: 38px; 
 	font-weight: 300;  
 	min-width: 60%;
 } 
@@ -133,8 +135,7 @@ header div {
 }
 
 h1 { 
-	font-weight: 700;
-	color: white;
+	font-weight: 700; 
 	font-size: 2rem; 
 	letter-spacing: 1.8px; 
 	display: flex;
@@ -235,7 +236,7 @@ input[type="submit"]:hover {
 .content {
 	padding-top: 150px;
 }
- 
+
 .filter-bar { 
 	display: flex;
 	flex-direction: column;
@@ -264,6 +265,7 @@ ul label {
 	padding: 10px;
 }
 
+form:hover ul,
 ul label,
 input[type="checkbox"]:checked + ul{
 	display: block;
@@ -276,7 +278,7 @@ input[type="radio"]:checked + label{
 
 /* results */
 section {
- padding-bottom: 150px;
+	padding-bottom: 150px;
 }
 
 .result-container {
@@ -317,16 +319,11 @@ h3 {
 }
 
 /* hover effect on links */
-a:hover,
-a:focus,
+main a:hover,
+main a:focus,
 footer a  {
 	color: rgb(63, 63, 194);
-}
-
-.result-container a:hover,
-.result-container a:focus {
-	text-decoration: underline;
-}
+}  
 
 /* colour tab */
 .art {
@@ -356,7 +353,7 @@ footer a  {
 	font-size: 1.8rem;
 	position: sticky;
 	bottom: 30px;
-	margin-right: 50px;
+	margin-right: 30px;
 }
 
 footer { 
@@ -383,6 +380,12 @@ footer {
 	.click-thru,
 	input[type="submit"] {
 		margin: 5px 10px;
+	}
+
+	.result-container p,
+	h3,
+	.result-container a {
+		margin-bottom: 3px;
 	}
 }
 
