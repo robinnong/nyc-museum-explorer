@@ -93,7 +93,10 @@ footer {
 /* HEADER START */
 header {
 	padding: 20px;   
-	height: 40vh; 
+	height: 45vh; 
+	background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-size: cover; 
+    background-repeat: no-repeat;
 }
 
 header nav {
@@ -107,15 +110,18 @@ header a {
 	display: inline-block;  
 }  
 
+header p:first-of-type {
+	font-weight: 400;
+	font-size: 2.4rem; 
+} 
+
 header p {  
+	color: white;
 	font-size: 2.2rem; 
 	line-height: 34px; 
-	font-weight: 300; 
-}
-
-header span { 
-	background-color: white; 
-}
+	font-weight: 300;  
+	min-width: 60%;
+} 
 
 header div {
 	height: 100%; 
@@ -123,17 +129,12 @@ header div {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: flex-start;
-
-	background-image: url(./assets/undraw_art_0tat.svg);  
-	background-size: calc(35vh);
-	background-position: bottom right;
-	background-repeat: no-repeat;    
-	background-position-y: 20px;
+	align-items: flex-start; 
 }
 
-h1 {
-	font-family: 'Carter One', sans-serif;
+h1 { 
+	font-weight: 700;
+	color: white;
 	font-size: 2rem; 
 	letter-spacing: 1.8px; 
 	display: flex;
@@ -141,17 +142,18 @@ h1 {
 }
 
 h1 span {
-	font-size: 1.5rem;
+	font-size: 1.7rem;
+	font-weight: 300;
 }
 
 main { 
-	min-height: 55vh;
+	min-height: 50vh;
 	padding-bottom: 50px;
-
-	background-image: url(./assets/undraw_art_museum_8or4.svg);  
+	background-image: url(./assets/undraw_art_museum_8or4.png);  
 	background-size: calc(35vh);
 	background-position: bottom;
 	background-repeat: no-repeat;   
+	position: relative;
 }
 
 .container {  
@@ -160,6 +162,10 @@ main {
 	padding: 30px;  
 	margin-bottom: 50px;
 	background-color: white;  
+	position: absolute; 
+	right: 0;
+	left: 0;
+	top: -50px;
 }
 
 .container form {
@@ -225,14 +231,18 @@ input[type="submit"]:hover {
 	background-color: rgb(255, 127, 123);  
 	border: 1.5px solid rgb(255, 127, 123); 
 } 
+
+.content {
+	padding-top: 150px;
+}
  
 .filter-bar { 
 	display: flex;
 	flex-direction: column;
-	align-items: flex-end; 
-	position: relative; 
+	align-items: flex-end;  
 	padding-bottom: 20px;
 	border-bottom: 0.5px solid grey;
+	position: relative;
 }
 
 input[type="checkbox"],
@@ -368,11 +378,7 @@ footer {
 	}
 }
 
-@media (max-width: 768px) { 
-
-	header p {   
-		width: 60vw; 
-	}
+@media (max-width: 768px) {  
 
 	.click-thru,
 	input[type="submit"] {
@@ -382,12 +388,29 @@ footer {
 
 @media (max-width: 480px) { 
 
+	header {
+		height: auto;
+	}
+
+	header div {
+		padding: 70px 0;
+	}
+
+	h2 {
+		font-size: 1.8rem;
+	}
+
 	header p {  
 		font-size: 2rem; 
+		width: 100%;
 	}
 
 	.container {
 		padding: 30px;
+	}
+
+	.content {
+		padding-top: 200px;
 	}
 
 	.click-thru,
@@ -398,4 +421,4 @@ footer {
 	.filter-bar {
 		align-items: center;
 	} 
-}
+} 
