@@ -422,6 +422,10 @@ footer {
 	.tel {
 		margin-bottom: 5px;
 	}
+
+		.filter-bar {
+		align-items: center;
+	} 
 }
 
 @media (max-width: 480px) { 
@@ -461,8 +465,4 @@ footer {
 	input[type="submit"] {
 		margin: 5px 0;
 	}
-
-	.filter-bar {
-		align-items: center;
-	} 
 } 
