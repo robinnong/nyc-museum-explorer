@@ -148,7 +148,7 @@ app.displayResults = (museums) => {
                 <h3>${name}</h3>
                 <p class="address"><i class="fas fa-map-marker-alt"></i> <a href="${mapQuery}" target="_blank">${address}, ${city}, NY </a></p>
                 <a class="tel" href="tel:${tel}"><i class="fas fa-phone"></i> ${tel}</a> 
-                <a class="url" href="${url}" target="_blank">Visit Website <i class="fas fa-external-link-alt"></i></a>
+                <a class="url" href="${url}" rel="external" target="_blank">Visit Website <i class="fas fa-external-link-alt"></i></a>
             </div>`; 
         for (let n = 0; n<typeFilter.length; n++) {  
             if (name.includes(typeFilter[n])) { 
