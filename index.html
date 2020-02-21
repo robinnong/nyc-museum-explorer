@@ -32,7 +32,10 @@
             <div class="click-thru">
                 <span></span>
                 <div class="arrows">
-                    <i class="fas fa-angle-up"></i><i class="fas fa-angle-down"></i>
+                    <i class="fas fa-angle-up" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle city up</span>
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle city down</span>
                 </div>
             </div>
             <input type="submit" value="Search Museums">
@@ -40,7 +43,7 @@
         </div>
         <div class="content wrapper">
             <form class="filter-bar">
-                <label tabindex="0" for="toggle-menu">Filter by Type <i class="fas fa-angle-down"></i></label>
+                <label tabindex="0" for="toggle-menu">Filter by Type <i class="fas fa-angle-down" aria-hidden="true"></i></label>
                 <input type="checkbox" id="toggle-menu" autocomplete="off">
                 <ul class="animated fadeIn faster">
                     <li>
@@ -49,23 +52,23 @@
                     </li>
                     <li>
                         <input type="radio" name="filter" id="art" value="Art">
-                        <label for="art"><i class="fas fa-circle"></i> Art</label>
+                        <label for="art"><i class="fas fa-circle" aria-hidden="true"></i> Art</label>
                     </li>
                     <li>
                         <input type="radio" name="filter" id="science" value="Science">
-                        <label for="science"><i class="fas fa-circle"></i> Science</label>
+                        <label for="science"><i class="fas fa-circle" aria-hidden="true"></i> Science</label>
                     </li>
                     <li>
                         <input type="radio" name="filter" id="history" value="History">
-                        <label for="history"><i class="fas fa-circle"></i> History</label> 
+                        <label for="history"><i class="fas fa-circle" aria-hidden="true"></i> History</label> 
                     </li>
                     <li>
                         <input type="radio" name="filter" id="cultural" value="Cultural">
-                        <label for="cultural"><i class="fas fa-circle"></i> Cultural</label>  
+                        <label for="cultural"><i class="fas fa-circle" aria-hidden="true"></i> Cultural</label>  
                     </li>
                     <li>
                         <input type="radio" name="filter" id="childrens" value="Children's">
-                        <label for="childrens"><i class="fas fa-circle"></i> Children's</label>   
+                        <label for="childrens"><i class="fas fa-circle" aria-hidden="true"></i> Children's</label>   
                     </li>
                 </ul>
             </form>  
@@ -73,7 +76,7 @@
             </section>
         </div>
         <div class="scroll-up">
-            <a href="#home"><i class="fas fa-chevron-up"></i> Top</a>
+            <a href="#home"><i class="fas fa-chevron-up" aria-hidden="true"></i> Top</a>
         </div>
     </main>
     <footer> 
