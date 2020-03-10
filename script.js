@@ -1,43 +1,27 @@
-//PESUDOCODE  
-// Allow the user to toggle between the 5 boroughs of New York City 
-// Create event listnerers for the toggle arrows 
-// When user clicks submit, check which borough the user chose and store user input in a variable
-// Send the user's selection (variable) as a query to New York City Museum API 
-// Get all museum listings for that borough and display as a list 
-// Display the name, contact, address and website for each museum  
-// Add a link to query Google Maps for the location using the museum name or address 
-// Allow user to filter the results by type (Art Gallery, Science, History, etc.)
-// Make all links open in a new tab 
- 
 const app = {}; //NAMESPACED OBJECT
 
 // CACHED JQUERY SELECTORS 
-app.$cities = $('.click-thru span') 
-app.$toggleUp = $('.arrows .fa-angle-up') 
-app.$toggleDown = $('.arrows .fa-angle-down') 
-app.$searchResults = $('section') 
-app.$cityForm = $('#city-filter')  
-app.$typeForm = $('.filter-bar')
-app.$selectType = $('input[type="radio"]')   
-app.$filterList = $('ul')
+app.$cities = $('.click-thru span');
+app.$toggleUp = $('.arrows .fa-angle-up');
+app.$toggleDown = $('.arrows .fa-angle-down');
+app.$searchResults = $('section');
+app.$cityForm = $('#city-filter');  
+app.$typeForm = $('.filter-bar');
+app.$selectType = $('input[type="radio"]');   
+app.$filterList = $('ul');
 
 // DO NOT DELETE!
-app.SOCRATA_API_TOKEN = [REDACTED] 
+app.SOCRATA_API_TOKEN = [REDACTED]
 app.SOCRATA_API_URL =  'https://data.cityofnewyork.us/resource/fn6f-htvy.json' 
 app.GOOGLEMAPS_API_URL = 'https://www.google.com/maps/search/?api=1&query='//search function 
 
 // GLOBALLY DECLARED VARIABLES
-app.citiesArray = ["Brooklyn", 
-                     "New York",
-                     "Queens",
-                     "Bronx",
-                     "Staten Island"
-                    ]           
-app.numCities = app.citiesArray.length - 1
+app.citiesArray = ["Brooklyn", "New York", "Queens", "Bronx", "Staten Island"]           
+app.numCities = app.citiesArray.length - 1;
 
 // VISIBILITY
-$('button, li, label, i, input[type="submit"]').addClass('pointer')
-$('.scroll-up, .filter-bar').hide() 
+$('button, li, label, i, input[type="submit"]').addClass('pointer');
+$('.scroll-up, .filter-bar').hide();
 
 
 //KEYWORDS TO FILTER AND ASSIGN MUSEUM TYPES
@@ -56,30 +40,30 @@ let cityIndex = 0;
 
 // FUNCTIONS
 app.displayCity = () => {   
-    app.$cities.text(app.citiesArray[cityIndex])
+    app.$cities.text(app.citiesArray[cityIndex]);
 }
 
 app.toggleCityUp = () => {   
     if (cityIndex > 0) {
-        cityIndex--
+        cityIndex--;
     } else {
         cityIndex = app.numCities;
     }
-    app.displayCity() 
+    app.displayCity();
 }
 
 app.toggleCityDown = () => {  
     if (cityIndex < app.numCities) {
-    cityIndex++
+    cityIndex++;
     } else {
         cityIndex = 0;
     }
-    app.displayCity() 
+    app.displayCity();
 } 
 
 app.evaluateCity = () => {
-    const selectedCity = app.citiesArray[cityIndex] 
-    app.getByCity(selectedCity)  
+    const selectedCity = app.citiesArray[cityIndex];
+    app.getByCity(selectedCity);
 }
 
 //API CALL
@@ -94,10 +78,10 @@ app.getByCity = (borough) => {
             "$$app_token" : app.SOCRATA_API_TOKEN
         }
     }).then((results) => {   
-        app.$searchResults.empty() 
-        app.displayResults(results)   
+        app.$searchResults.empty();
+        app.displayResults(results);   
     }).catch((error)=> { 
-        console.log(error)
+        console.log(error);
     })
 };
 
@@ -105,42 +89,42 @@ app.getByCity = (borough) => {
 app.assignType = function () { 
     for (let n = 0; n<5; n++) {
         $(app.strArray[n]).each(function(){
-            $(".result-container:contains(" + this + ")").addClass(app.classArray[n])
+            $(".result-container:contains(" + this + ")").addClass(app.classArray[n]);
         })
     }
 }
 
 // USER INPUT FROM FILTER DROP DOWN MENU
 app.getUserFilter = () => { 
-    let str = ""
+    let str = "";
     $('input[type="radio"]:checked').each(function() {
-        str = $(this).val()
+        str = $(this).val();
     });
     return str
 }
 
 app.displayResults = (museums) => {
-    const str = app.getUserFilter()
+    const str = app.getUserFilter();
     let typeFilter;
     if (str === "Art"){
-        typeFilter = app.strArray[0]
+        typeFilter = app.strArray[0];
     } else if (str === "Science") {
-        typeFilter = app.strArray[1]
+        typeFilter = app.strArray[1];
     } else if (str === "History")  {
-        typeFilter = app.strArray[2]
+        typeFilter = app.strArray[2];
     } else if (str === "Cultural") {
-        typeFilter = app.strArray[3]
+        typeFilter = app.strArray[3];
     } else if (str === "Children's") {
-        typeFilter = app.strArray[4]
+        typeFilter = app.strArray[4];
     } else {
-        typeFilter = app.strArray[5]
+        typeFilter = app.strArray[5];
     }
     museums.forEach((museum) => {
-        const name = museum.name
-        const address = museum.adress1
-        const tel = museum.tel
-        const url = museum.url 
-        const city = museum.city
+        const name = museum.name;
+        const address = museum.adress1;
+        const tel = museum.tel;
+        const url = museum.url; 
+        const city = museum.city;
         const encoded = encodeURI(`${museum.name}+${museum.adress1}`)
         const mapQuery = `${app.GOOGLEMAPS_API_URL}+${encoded}`
         const museumHtml = 
@@ -152,49 +136,36 @@ app.displayResults = (museums) => {
             </div>`; 
         for (let n = 0; n<typeFilter.length; n++) {  
             if (name.includes(typeFilter[n])) { 
-                app.$searchResults.append(museumHtml) 
+                app.$searchResults.append(museumHtml);
             }
         }
     })
-    app.assignType()
-    $('.scroll-up').show()
+    app.assignType();
+    $('.scroll-up').show();
 }
-
-app.toggleArrow = () => {
-    $('.filter-bar i').toggleClass('fa-angle-up animated fadeIn faster')  
-} 
 
 app.showUL = () => {
-    app.$filterList.toggle()
-}
-
-app.hide = () => {
-    app.$filterList.hide()
+    app.$filterList.toggle();
 }
 
 // INITIALIZE
 app.init = () => { 
-    app.$filterList.hide()
-    app.displayCity()    
+    app.$filterList.hide();
+    app.displayCity();
     // EVENTS
-    $('.filter-bar label:first-of-type').on('click', app.showUL)
-    $('li').on('click', function(){
-        app.hide()
-        app.toggleArrow()
-    }) 
-    app.$toggleUp.on('click', app.toggleCityUp) 
-    app.$toggleDown.on('click', app.toggleCityDown) 
+    $('.filter-bar label:first-of-type').on('click', app.showUL);
+    app.$toggleUp.on('click', app.toggleCityUp); 
+    app.$toggleDown.on('click', app.toggleCityDown); 
     app.$cityForm.on('submit', function(e) {
-        e.preventDefault() 
+        e.preventDefault();
         $('input[type="radio"]:checked').prop( "checked", false); //default user selection to Show All
-        app.evaluateCity()
-        app.$typeForm.show()
+        app.evaluateCity();
+        app.$typeForm.show();
     })  
     app.$selectType.change(function() {  
-        app.getUserFilter() 
-        app.evaluateCity()
+        app.getUserFilter(); 
+        app.evaluateCity();
     })
-    $('input[type="checkbox"]').on('click', app.toggleArrow) 
 }
 
 // DOCUMENT READY

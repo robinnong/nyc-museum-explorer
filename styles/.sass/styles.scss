@@ -1,0 +1,319 @@
+@import 'setup';
+@import 'global';
+
+/* FONT SIZING */
+input[type="submit"],
+.filter-bar,
+.result-container {font-size: 1.5rem;}
+
+h1,
+h2,
+h3,
+.click-thru {font-size: 2rem;}
+
+h2,
+h3,
+.click-thru,
+input[type="submit"], 
+.result-container a {font-weight: 600;} 
+
+h2,
+.url,
+.container form,
+.filter-bar,
+footer {text-align: center;}
+
+/* HEADER START */
+header {
+	color: white;
+	padding: 20px;   
+	height: 45vh; 
+	background-image: linear-gradient(-225deg, #A8BFFF 0%, #884D80 100%);
+    background-size: cover; 
+    background-repeat: no-repeat;
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        a {
+            font-size: 2.5rem;  
+            display: inline-block;  
+        }
+        p:first-of-type {
+            font-weight: 400;
+            font-size: 2.8rem;  
+    } 
+}   
+
+h1 { 
+	letter-spacing: 1.8px; 
+	display: flex;
+    flex-direction: column;
+        span {
+            font-size: 1.7rem;
+            font-weight: 300;
+    }
+}
+
+.header-text {
+	height: 100%; 
+	min-width: 60%;
+	padding-bottom: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start; 
+	font-size: 2.2rem; 
+	line-height: 38px; 
+	font-weight: 300;  
+}
+
+main { 
+	min-height: 50vh;
+	padding-bottom: 50px;
+	background-size: calc(38vh);
+	background: url(./assets/undraw_art_museum_8or4.png) no-repeat bottom;   
+	position: relative;
+}
+
+.container {  
+	box-shadow: 0px 10px 30px 10px #b4b4b440; 
+	border-radius: 10px;
+	padding: 30px;  
+	margin-bottom: 50px;
+	background-color: white;  
+	position: absolute; 
+	right: 0;
+	left: 0;
+	top: -50px;
+		form {
+            margin-top: 15px;  
+            display: flex; 
+            justify-content: center;
+            align-items: center; 
+            flex-wrap: wrap;
+	}
+}
+
+/* CLICK THRU */
+.click-thru,
+input[type="submit"] {
+	height: 55px;
+	width: 225px;
+	margin: 0 10px;
+	border-radius: 5px;
+}
+
+.click-thru { 
+	border: 1px solid #f1f1f1;	
+	background-color: #f1f1f1;	
+	position: relative;
+	display: flex; 
+    font-weight: 400;
+        span {
+            color: #3c3c3c; 
+            margin: auto;
+        }
+        i { 
+            font-size: 2.5rem;
+            transition: all 0.2s;  
+            &:hover,
+            &:focus {color: #3f3fc2;}
+    }
+}
+
+.arrows {
+	position: absolute;
+	right: 10px;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+input[type="submit"] {
+	background-color: #f0746f; 
+	font-family: inherit;
+	color: white;
+	padding: 0 20px;
+	border: 1.5px solid #f0746f; 
+	transition-property: all;
+    transition-duration: 0.3s;
+        &:focus,
+        &:hover {
+            background-color: #ff7f7b;  
+            border: 1.5px solid #ff7f7b; 
+    } 
+} 
+
+.content {padding-top: 150px;}
+
+.filter-bar { 
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;  
+	padding-bottom: 20px;
+	border-bottom: 0.5px solid grey;
+	position: relative;
+}
+
+input[type="checkbox"],
+input[type="radio"] {display: none;}  
+
+input[type="checkbox"]:checked + label i {transform: rotate(180deg);}
+
+ul {  
+	background-color: white;
+	box-shadow: 0px 10px 20px 3px  #b4b4b440; 
+	width: 150px;  
+	top: 25px;
+	position: absolute; 
+    z-index: 30;
+    label {
+        padding: 10px;
+        display: block;
+    }
+    i {font-size: 1.2rem;}
+} 
+
+.art-option + label i {color: #f5b56d;}
+
+.science-option + label i {color: #3b9982;}
+
+.history-option + label i {color: #7bcdd3;}
+
+.cultural-option + label i {color: #d37b8a;}
+
+.childrens-option + label i {color: #9ed37b;}
+
+
+li:hover,
+li:focus,
+input[type="radio"]:checked + label{background-color: #d7f2f3;}
+
+/* Results Section */
+section {padding-bottom: 150px;}
+
+.result-container {
+	margin: 20px 0;
+	padding-left: 10px;
+	display: flex; 
+	justify-content: space-between; 
+	align-items: center;
+    min-height: 50px;   
+        i {
+            font-size: 1.3rem;
+            color: #3f3fc2;
+    }
+}
+
+/* museum name */
+h3 { 
+	padding-right: 10px;  
+	flex-basis: 40%;
+	flex-shrink: -2; 
+} 
+
+.address { 
+	flex-basis: 35%;
+	flex-shrink: -2;
+	padding: 0 10px;
+    a {text-decoration: underline;}
+}
+
+.tel {color: #646464;}
+
+.url,
+.tel  { 
+	flex-basis: 15%;
+	flex-shrink: 1;
+}
+
+.url {
+	text-align: center;
+	background-color: white;
+	border: 0.5px solid #b4b4b4; 
+	border-radius: 25px;
+	padding: 8px 15px;
+}
+
+
+/* hover effect on links */
+main a:hover,
+main a:focus,
+footer a  {color: #3f3fc2;}  
+
+/* colour tab */
+.art {border-left: 4px solid rgb(245, 181, 109);}
+
+.science {border-left: 4px solid rgb(59, 153, 130);}
+
+.history {border-left: 4px solid rgb(123, 205, 211);}
+
+.cultural {border-left: 4px solid rgb(211, 123, 138);}
+
+.childrens {border-left: 4px solid rgb(158, 211, 123);}
+
+/* scroll to the top */
+.scroll-up {  
+	display: flex;
+	justify-content: flex-end;
+	font-size: 1.8rem;
+	position: sticky;
+	bottom: 30px;
+	margin-right: 30px;
+}
+
+footer { 
+	font-size: 1.4rem;
+	height: 5vh;
+	padding: 10px;
+} 
+
+
+/* media queries */
+@media (max-width: 960px) { 
+	.result-container { 
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+
+	.address {padding: 0;}
+}
+
+@media (max-width: 768px) {  
+
+	.click-thru,
+	input[type="submit"] {margin: 5px 10px;}
+
+	.result-container p,
+	h3,
+	.tel {margin-bottom: 5px;}
+
+	.filter-bar {align-items: center;} 
+}
+
+@media (max-width: 480px) { 
+
+	h1, 
+	h2,
+	h3 {font-size: 1.8rem;}
+	
+	h1 span{font-size: 1.5rem;}
+
+	header {height: auto;}
+
+	.header-text {
+		font-size: 2rem; 
+		width: 100%;
+		padding: 60px 0;
+	}
+
+	.container {padding: 30px;}
+
+	.content {padding-top: 200px;}
+
+	.click-thru,
+	input[type="submit"] {margin: 5px 0;}
+} 

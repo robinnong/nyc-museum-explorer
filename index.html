@@ -6,68 +6,74 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NYC Museum Explorer</title>
     <!-- link to Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap" rel="stylesheet">  
     <!-- link to fontawesome -->
     <script src="https://kit.fontawesome.com/f3369905b3.js" crossorigin="anonymous"></script>
     <!-- link to animations -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <!-- link to styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
     <header id="home">
         <nav>
             <h1>New York City<span>Museum Explorer</span></h1>
-            <a href="https://github.com/robinnong/nyc-museum-explorer" rel="external" aria-label="Go to GitHub repository to view project code"><i class="fab fa-github" aria-hidden="true"></i></a>
+            <a href="https://github.com/robinnong/nyc-museum-explorer" rel="external" aria-label="Go to GitHub repository to view project code">
+                <i class="fab fa-github" aria-hidden="true"></i>
+            </a>
         </nav>
-        <div class="wrapper">   
+        <div class="header-text wrapper">   
             <p>Explore a complete listing of New York City's museums and galleries.</p> 
             <p>Search by borough.</p> 
         </div>
     </header>
     <main>  
         <div class="container wrapper">
-        <h2>Where do you want to go?</h2>
-        <form id="city-filter">
-            <div class="click-thru">
-                <span></span>
-                <div class="arrows">
-                    <i class="fas fa-angle-up" aria-hidden="true"></i>
-                    <span class="sr-only">Toggle city up</span>
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                    <span class="sr-only">Toggle city down</span>
+            <h2>Where do you want to go?</h2>
+            <form action="#" id="city-filter" name="city-filter">
+                <div class="click-thru">
+                    <span></span>
+                    <div class="arrows">
+                        <button aria-label="Toggle to previous city in list">
+                            <i class="fas fa-angle-up" aria-hidden="true"></i>
+                        </button>
+                        <button aria-label="Toggle to next city in list">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <input type="submit" value="Search Museums">
-        </form> 
+                <input type="submit" value="Search Museums">
+            </form> 
         </div>
         <div class="content wrapper">
-            <form class="filter-bar">
-                <label tabindex="0" for="toggle-menu">Filter by Type <i class="fas fa-angle-down" aria-hidden="true"></i></label>
-                <input type="checkbox" id="toggle-menu" autocomplete="off">
+            <form action="#" class="filter-bar">
+                <input type="checkbox" id="toggle-menu" autocomplete="off" checked="false">
+                <label tabindex="0" for="toggle-menu">Filter by Type 
+                    <i class="fas fa-angle-up" aria-hidden="true"></i>
+                </label>
                 <ul class="animated fadeIn faster">
                     <li>
-                        <input type="radio" name="filter" id="show-all" value="">
+                        <input type="radio" name="filter" id="show-all" class="show-all" value="">
                         <label for="show-all">Show All</label>
                     </li>
                     <li>
-                        <input type="radio" name="filter" id="art" value="Art">
+                        <input type="radio" name="filter" id="art" class="art-option" value="Art">
                         <label for="art"><i class="fas fa-circle" aria-hidden="true"></i> Art</label>
                     </li>
                     <li>
-                        <input type="radio" name="filter" id="science" value="Science">
+                        <input type="radio" name="filter" id="science" class="science-option" value="Science">
                         <label for="science"><i class="fas fa-circle" aria-hidden="true"></i> Science</label>
                     </li>
                     <li>
-                        <input type="radio" name="filter" id="history" value="History">
+                        <input type="radio" name="filter" id="history" class="history-option" value="History">
                         <label for="history"><i class="fas fa-circle" aria-hidden="true"></i> History</label> 
                     </li>
                     <li>
-                        <input type="radio" name="filter" id="cultural" value="Cultural">
+                        <input type="radio" name="filter" id="cultural" class="cultural-option" value="Cultural">
                         <label for="cultural"><i class="fas fa-circle" aria-hidden="true"></i> Cultural</label>  
                     </li>
                     <li>
-                        <input type="radio" name="filter" id="childrens" value="Children's">
+                        <input type="radio" name="filter" id="childrens" class="childrens-option" value="Children's">
                         <label for="childrens"><i class="fas fa-circle" aria-hidden="true"></i> Children's</label>   
                     </li>
                 </ul>
@@ -76,11 +82,11 @@
             </section>
         </div>
         <div class="scroll-up">
-            <a href="#home"><i class="fas fa-chevron-up" aria-hidden="true"></i> Top</a>
+            <a href="#home" aria-label="Click to navigate to top of page"><i class="fas fa-chevron-up" aria-hidden="true"></i> Top</a>
         </div>
     </main>
     <footer> 
-        <p> © 2020 Robin Nong. Illustrations by <a href="https://undraw.co" rel="external" target="_blank">Katerina Limpitsouni.</a></p>
+        <p>©2020 Robin Nong. Illustrations by <a href="https://undraw.co" rel="external" target="_blank">Katerina Limpitsouni.</a></p>
     </footer>
     <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script> 
     <script src="script.js"></script>
