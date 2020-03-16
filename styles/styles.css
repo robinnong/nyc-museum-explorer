@@ -390,8 +390,6 @@ h1 span {
 main {
   min-height: 50vh;
   padding-bottom: 50px;
-  background-size: calc(38vh);
-  background: url(./assets/undraw_art_museum_8or4.png) no-repeat bottom;
   position: relative;
 }
 
@@ -569,7 +567,7 @@ section {
 
 .result-container {
   margin: 20px 0;
-  padding-left: 10px;
+  padding: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -580,28 +578,54 @@ section {
       -ms-flex-align: center;
           align-items: center;
   min-height: 50px;
+  -webkit-box-shadow: 0px 0px 5px 5px #b4b4b421;
+          box-shadow: 0px 0px 5px 5px #b4b4b421;
+  border-radius: 10px;
 }
 
 .result-container i {
   font-size: 1.3rem;
-  color: #3f3fc2;
+  color: #713fc2;
 }
 
-/* museum name */
-h3 {
+.name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-right: 10px;
-  -ms-flex-preferred-size: 40%;
-      flex-basis: 40%;
-  -ms-flex-negative: -2;
-      flex-shrink: -2;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 2 40%;
+          flex: 1 2 40%;
+}
+
+.icon {
+  height: 35px;
+  width: 35px;
+  border-radius: 5px;
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 35px;
+          flex: 0 0 35px;
+}
+
+.icon i {
+  margin: auto;
+  color: white;
+  font-size: 1.8rem;
 }
 
 .address {
-  -ms-flex-preferred-size: 35%;
-      flex-basis: 35%;
-  -ms-flex-negative: -2;
-      flex-shrink: -2;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 35%;
+          flex: 0 1 35%;
   padding: 0 10px;
+  color: #646464;
 }
 
 .address a {
@@ -610,50 +634,57 @@ h3 {
 
 .tel {
   color: #646464;
-}
-
-.url,
-.tel {
-  -ms-flex-preferred-size: 15%;
-      flex-basis: 15%;
-  -ms-flex-negative: 1;
-      flex-shrink: 1;
+  padding: 0 10px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 150px;
+          flex: 1 0 150px;
 }
 
 .url {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 150px;
+          flex: 1 0 150px;
   text-align: center;
   background-color: white;
+  padding: 8px 20px;
   border: 0.5px solid #b4b4b4;
   border-radius: 25px;
-  padding: 8px 15px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.url:focus, .url:hover {
+  background-color: #713fc2;
+  border: 0.5px solid #713fc2;
+  color: white;
 }
 
 /* hover effect on links */
 main a:hover,
 main a:focus,
 footer a {
-  color: #3f3fc2;
+  color: #713fc2;
 }
 
 /* colour tab */
 .art {
-  border-left: 4px solid #f5b56d;
+  background-color: #f5b56d;
 }
 
 .science {
-  border-left: 4px solid #3b9982;
+  background-color: #3b9982;
 }
 
 .history {
-  border-left: 4px solid #7bcdd3;
+  background-color: #7bcdd3;
 }
 
 .cultural {
-  border-left: 4px solid #d37b8a;
+  background-color: #d37b8a;
 }
 
 .childrens {
-  border-left: 4px solid #9ed37b;
+  background-color: #9ed37b;
 }
 
 /* scroll to the top */
@@ -691,8 +722,19 @@ footer {
         -ms-flex-align: start;
             align-items: flex-start;
   }
-  .address {
+  .name {
+    margin-bottom: 10px;
+  }
+  .address,
+  .tel {
     padding: 0;
+    margin-bottom: 5px;
+    -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+  }
+  .url {
+    -ms-flex-preferred-size: 0;
+        flex-basis: 0;
   }
 }
 
