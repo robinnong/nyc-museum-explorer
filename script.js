@@ -11,7 +11,7 @@ app.$selectType = $('input[type="radio"]');
 app.$filterList = $('ul');
 
 // DO NOT DELETE!
-app.SOCRATA_API_TOKEN = [REDACTED]; 
+app.SOCRATA_API_TOKEN = [REDACTED]
 app.SOCRATA_API_URL =  'https://data.cityofnewyork.us/resource/fn6f-htvy.json'; 
 app.GOOGLEMAPS_API_URL = 'https://www.google.com/maps/search/?api=1&query=';//search function 
 
@@ -20,7 +20,7 @@ app.citiesArray = ["Brooklyn", "New York", "Queens", "Bronx", "Staten Island"];
 app.numCities = app.citiesArray.length - 1;
 
 // VISIBILITY
-$('button, li, label, i, input[type="submit"]').addClass('pointer');
+$('button, li, i, input[type="submit"]').addClass('pointer');
 $('.scroll-up, .filter-bar').hide();
 
 
@@ -148,16 +148,20 @@ app.displayResults = (museums) => {
     $('.scroll-up').show();
 }
 
-app.showUL = () => {
-    app.$filterList.toggle();
-}
-
 // INITIALIZE
 app.init = () => { 
     app.$filterList.hide();
     app.displayCity();
     // EVENTS
-    $('.filter-bar label:first-of-type').on('click', app.showUL);
+    $('.filter-bar').hover(function(){
+        app.$filterList.toggle();
+    });
+    $('.filter-bar').focusin(function () {
+        app.$filterList.show();
+    });
+    $('.filter-bar').focusout(function () {
+        app.$filterList.hide();
+    });
     app.$toggleUp.on('click', app.toggleCityUp); 
     app.$toggleDown.on('click', app.toggleCityDown); 
     app.$cityForm.on('submit', function(e) {

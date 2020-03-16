@@ -23,6 +23,12 @@ h2,
 .filter-bar,
 footer {text-align: center;}
 
+button{
+	border: none;
+	font-family: inherit;
+	background-color: inherit;
+}
+
 /* HEADER START */
 header {
 	color: white;
@@ -150,15 +156,16 @@ input[type="submit"] {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;  
-	padding-bottom: 20px;
-	border-bottom: 0.5px solid grey;
+	padding-bottom: 20px; 
 	position: relative;
 }
-
-input[type="checkbox"],
+ 
 input[type="radio"] {display: none;}  
 
-input[type="checkbox"]:checked + label i {transform: rotate(180deg);}
+.toggle-menu { 
+	&:hover i,
+	&:focus i {transform: rotate(180deg);}
+}
 
 ul {  
 	background-color: white;
@@ -186,7 +193,7 @@ ul {
 
 
 li:hover,
-li:focus,
+li:focus, 			
 input[type="radio"]:checked + label{background-color: #d7f2f3;}
 
 /* Results Section */
@@ -199,7 +206,7 @@ section {padding-bottom: 150px;}
 	justify-content: space-between; 
 	align-items: center;
 	min-height: 50px;   
-	box-shadow: 0px 0px 5px 5px #b4b4b421; 
+	box-shadow: 0px 0px 5px 5px #b4b4b436; 
 	border-radius: 10px;
         i {
             font-size: 1.3rem;

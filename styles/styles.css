@@ -317,6 +317,12 @@ footer {
   text-align: center;
 }
 
+button {
+  border: none;
+  font-family: inherit;
+  background-color: inherit;
+}
+
 /* HEADER START */
 header {
   color: white;
@@ -501,16 +507,15 @@ input[type="submit"]:focus, input[type="submit"]:hover {
       -ms-flex-align: end;
           align-items: flex-end;
   padding-bottom: 20px;
-  border-bottom: 0.5px solid grey;
   position: relative;
 }
 
-input[type="checkbox"],
 input[type="radio"] {
   display: none;
 }
 
-input[type="checkbox"]:checked + label i {
+.toggle-menu:hover i,
+.toggle-menu:focus i {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
 }
@@ -578,8 +583,8 @@ section {
       -ms-flex-align: center;
           align-items: center;
   min-height: 50px;
-  -webkit-box-shadow: 0px 0px 5px 5px #b4b4b421;
-          box-shadow: 0px 0px 5px 5px #b4b4b421;
+  -webkit-box-shadow: 0px 0px 5px 5px #b4b4b436;
+          box-shadow: 0px 0px 5px 5px #b4b4b436;
   border-radius: 10px;
 }
 
