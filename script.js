@@ -11,18 +11,19 @@ app.$selectType = $('input[type="radio"]');
 app.$filterList = $('ul');
 
 // DO NOT DELETE!
-app.SOCRATA_API_TOKEN = [REDACTED]
+app.SOCRATA_API_TOKEN = [REDACTED];
 app.SOCRATA_API_URL =  'https://data.cityofnewyork.us/resource/fn6f-htvy.json'; 
 app.GOOGLEMAPS_API_URL = 'https://www.google.com/maps/search/?api=1&query=';//search function 
 
 // GLOBALLY DECLARED VARIABLES
 app.citiesArray = ["Brooklyn", "New York", "Queens", "Bronx", "Staten Island"];           
 app.numCities = app.citiesArray.length - 1;
+app.classArray = ["art", "science", "history", "cultural", "childrens"];
+app.classIcons = ["fa-palette", "fa-atom", "fa-landmark", "fa-globe", "fa-child"];
 
 // VISIBILITY
 $('button, li, i, input[type="submit"]').addClass('pointer');
 $('.scroll-up, .filter-bar').hide();
-
 
 //KEYWORDS TO FILTER AND ASSIGN MUSEUM TYPES
 app.strArray = [ 
@@ -33,9 +34,6 @@ app.strArray = [
                 ["Children's", "Discovery Times"],
                 [" "]
                 ];
-
-app.classArray = ["art", "science", "history", "cultural", "childrens"];
-app.classIcons = ["fa-palette", "fa-atom", "fa-landmark", "fa-globe", "fa-child"];
 
 let cityIndex = 0; 
 
