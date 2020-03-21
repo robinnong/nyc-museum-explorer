@@ -4,14 +4,14 @@ const app = {}; //NAMESPACED OBJECT
 app.$cities = $('.click-thru span');
 app.$toggleUp = $('.arrows .fa-angle-up');
 app.$toggleDown = $('.arrows .fa-angle-down');
-app.$searchResults = $('section');
+app.$searchResults = $('ol');
 app.$cityForm = $('#city-filter');  
 app.$typeForm = $('.filter-bar');
 app.$selectType = $('input[type="radio"]');   
 app.$filterList = $('ul');
 
 // DO NOT DELETE!
-app.SOCRATA_API_TOKEN = [REDACTED]
+app.SOCRATA_API_TOKEN = [REDACTED];
 app.SOCRATA_API_URL =  'https://data.cityofnewyork.us/resource/fn6f-htvy.json'; 
 app.GOOGLEMAPS_API_URL = 'https://www.google.com/maps/search/?api=1&query=';//search function 
 
@@ -105,6 +105,7 @@ app.getType = () => {
             typeFilter = app.strArray[i];
         } 
     }
+    app.evaluateCity();
 }
 
 // DISPLAYS RESULTS FOR THE SELECTED CITY OR FILTER OPTION
@@ -118,7 +119,7 @@ app.displayResults = (museums) => {
         const encoded = encodeURI(`${museum.name}+${museum.adress1}`)
         const mapQuery = `${app.GOOGLEMAPS_API_URL}+${encoded}`
         const museumHtml = 
-            `<div class="result-container">
+            `<li class="result-container">
                 <div class="name">
                     <div class="icon"><i class="fas"></i></div>
                     <h3>${name}</h3>
@@ -126,7 +127,7 @@ app.displayResults = (museums) => {
                 <p class="address"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <a href="${mapQuery}" target="_blank">${address}, ${city}, NY </a></p>
                 <a class="tel" href="tel:${tel}"><i class="fas fa-phone" aria-hidden="true"></i> ${tel}</a> 
                 <a class="url" href="${url}" rel="external" target="_blank">Visit Website</a>
-            </div>`; 
+            </li>`; 
         for (let str = 0; str < typeFilter.length; str++) {  
             if (name.includes(typeFilter[str])) { 
                 app.$searchResults.append(museumHtml);
@@ -159,7 +160,6 @@ app.init = () => {
     })  
     app.$selectType.change(function() {   
         app.getType();
-        app.evaluateCity();
     })
 }
 

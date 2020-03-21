@@ -201,12 +201,12 @@ ul {
 .childrens-option + label i {color: #9ed37b;}
 
 
-li:hover,
-li:focus, 			
+ul li:hover,
+ul li:focus, 			
 input[type="radio"]:checked + label{background-color: #d7f2f3;}
 
 /* Results Section */
-section {padding-bottom: 150px;}
+ol {padding-bottom: 150px;}
 
 /* hover effect on links */
 .content a:not(:last-of-type):hover,
