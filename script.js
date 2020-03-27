@@ -11,7 +11,7 @@ app.$selectType = $('input[type="radio"]');
 app.$filterList = $('ul');
 
 // DO NOT DELETE!
-app.SOCRATA_API_TOKEN = [REDACTED];
+app.SOCRATA_API_TOKEN = '1eOVPNZ5mpDC6mAyfKeXXR49h';
 app.SOCRATA_API_URL =  'https://data.cityofnewyork.us/resource/fn6f-htvy.json'; 
 app.GOOGLEMAPS_API_URL = 'https://www.google.com/maps/search/?api=1&query=';//search function 
 
@@ -34,8 +34,7 @@ app.strArray = [
                 ["Culture", "Cultural", "Leo Baeck", "Yeshiva", "Americas", "Numismatic", "Hispanic", "Tenement", "Madame Tussauds", "Tolerance", "Anne Frank","Garibaldi-Meucci", "Jewish", "Asia", "Chinese", "Nordic", "Museo", "Ukrainian", "Italian", "Jazz", "Indian", "Wave Hill"],
                 ["Children's", "Discovery Times"]
                 ];
-
-let cityIndex = 0;  
+let cityIndex = 0;
 let typeFilter = app.strArray[0];
 
 // FUNCTIONS
@@ -46,7 +45,7 @@ app.toggleCityUp = () => {
     } else {
         cityIndex = app.numCities;
     }
-    app.displayCity();
+    app.displayCity(cityIndex);
 }
 
 // WHEN USER CLICKS DOWN IN CITY LIST
@@ -65,9 +64,10 @@ app.displayCity = () => {
 }
 
 // WHEN USER SUBMITS CHOICE OF CITY, MAKE A CALL TO THE API
-app.evaluateCity = () => {
+async function evaluateCity() {
     const selectedCity = app.citiesArray[cityIndex];
-    app.getByCity(selectedCity);
+    await app.getByCity(selectedCity);
+    app.loading();
 }
 
 //API CALL
@@ -86,8 +86,14 @@ app.getByCity = (borough) => {
         app.displayResults(results);   
     }).catch((error)=> { 
         console.log(error);
+        app.$searchResults.append(`<p>Failed to load data. Please wait and try again.</p>`);
     })
 };
+
+// DISPLAY LOADING MESSAGE 
+app.loading = () => {
+    app.$searchResults.append(`<p>Loading results...</p>`);
+}
 
 // ASSIGNS THE COLOUR TAB FOR EACH TYPE 
 app.assignType = function () { 
@@ -101,11 +107,9 @@ app.assignType = function () {
 app.getType = () => {
     const idAttribute = $('input[type="radio"]:checked').attr("id"); 
     for (let i = 0 ; i < app.classArray.length; i++) {
-        if (idAttribute === app.classArray[i]) {
-            typeFilter = app.strArray[i];
-        } 
+        idAttribute === app.classArray[i] ? typeFilter = app.strArray[i]: null; 
     }
-    app.evaluateCity();
+    evaluateCity();
 }
 
 // DISPLAYS RESULTS FOR THE SELECTED CITY OR FILTER OPTION
@@ -141,7 +145,7 @@ app.displayResults = (museums) => {
 // INITIALIZE
 app.init = () => { 
     app.$filterList.hide();
-    app.displayCity();
+    app.displayCity(0);
     // EVENTS
     $('.filter-bar').hover(function(){
         app.$filterList.toggle();
@@ -155,7 +159,7 @@ app.init = () => {
         e.preventDefault(); 
         typeFilter = app.strArray[0];
         $('input[type="radio"]:checked').prop("checked", false); //default user selection to Show All
-        app.evaluateCity();
+        evaluateCity();
         app.$typeForm.show();
     })  
     app.$selectType.change(function() {   
