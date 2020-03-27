@@ -242,6 +242,7 @@ h1,
 h2,
 h3,
 p,
+ol,
 button,
 label {
   margin: 0;
@@ -569,14 +570,14 @@ ul i {
   color: #9ed37b;
 }
 
-li:hover,
-li:focus,
+ul li:hover,
+ul li:focus,
 input[type="radio"]:checked + label {
   background-color: #d7f2f3;
 }
 
 /* Results Section */
-section {
+ol {
   padding-bottom: 150px;
 }
 
@@ -584,6 +585,13 @@ section {
 .content a:not(:last-of-type):hover,
 .content a:not(:last-of-type):focus {
   color: #713fc2;
+}
+
+.loading-message {
+  font-size: 1.6rem;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .result-container {

@@ -11,7 +11,7 @@ app.$selectType = $('input[type="radio"]');
 app.$filterList = $('ul');
 
 // DO NOT DELETE!
-app.SOCRATA_API_TOKEN = [REDACTED];
+app.SOCRATA_API_TOKEN = [REDACTED]
 app.SOCRATA_API_URL =  'https://data.cityofnewyork.us/resource/fn6f-htvy.json'; 
 app.GOOGLEMAPS_API_URL = 'https://www.google.com/maps/search/?api=1&query=';//search function 
 
@@ -84,15 +84,16 @@ app.getByCity = (borough) => {
     }).then((results) => {   
         app.$searchResults.empty();
         app.displayResults(results);   
+        $('.loading-message').text("")
     }).catch((error)=> { 
         console.log(error);
-        app.$searchResults.append(`<p>Failed to load data. Please wait and try again.</p>`);
+        $('.loading-message').text("Failed to load data. Please wait and try again");
     })
 };
 
 // DISPLAY LOADING MESSAGE 
 app.loading = () => {
-    app.$searchResults.append(`<p>Loading results...</p>`);
+    $('.loading-message').text("Loading results...");
 }
 
 // ASSIGNS THE COLOUR TAB FOR EACH TYPE 

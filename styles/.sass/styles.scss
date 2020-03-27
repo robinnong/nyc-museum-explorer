@@ -212,6 +212,13 @@ ol {padding-bottom: 150px;}
 .content a:not(:last-of-type):hover,
 .content a:not(:last-of-type):focus {color: #713fc2;}  
 
+.loading-message {
+	font-size: 1.6rem;
+	font-style: italic;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
 .result-container {
 	margin: 20px 0;
 	padding: 15px;
