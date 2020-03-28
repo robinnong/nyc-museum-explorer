@@ -11,7 +11,7 @@ app.$selectType = $('input[type="radio"]');
 app.$filterList = $('ul');
 
 // DO NOT DELETE!
-app.SOCRATA_API_TOKEN = [REDACTED]
+app.SOCRATA_API_TOKEN = [REDACTED];
 app.SOCRATA_API_URL =  'https://data.cityofnewyork.us/resource/fn6f-htvy.json'; 
 app.GOOGLEMAPS_API_URL = 'https://www.google.com/maps/search/?api=1&query=';//search function 
 
@@ -40,28 +40,18 @@ let typeFilter = app.strArray[0];
 // FUNCTIONS
 // WHEN USER CLICKS UP IN CITY LIST
 app.toggleCityUp = () => {   
-    if (cityIndex > 0) {
-        cityIndex--;
-    } else {
-        cityIndex = app.numCities;
-    }
-    app.displayCity(cityIndex);
+    cityIndex > 0 ? cityIndex-- : cityIndex = app.numCities;
+    app.displayCity();
 }
 
 // WHEN USER CLICKS DOWN IN CITY LIST
 app.toggleCityDown = () => {  
-    if (cityIndex < app.numCities) {
-        cityIndex++;
-    } else {
-        cityIndex = 0;
-    }
+    cityIndex < app.numCities ? cityIndex++ : cityIndex = 0;
     app.displayCity();
 } 
 
 // AFTER USER TOGGLES THRU THE CITY LIST, DISPLAY THE NAME OF THE CITY (FROM ARRAY)
-app.displayCity = () => {   
-    app.$cities.text(app.citiesArray[cityIndex]);
-}
+app.displayCity = () => app.$cities.text(app.citiesArray[cityIndex]);
 
 // WHEN USER SUBMITS CHOICE OF CITY, MAKE A CALL TO THE API
 async function evaluateCity() {
@@ -92,9 +82,7 @@ app.getByCity = (borough) => {
 };
 
 // DISPLAY LOADING MESSAGE 
-app.loading = () => {
-    $('.loading-message').text("Loading results...");
-}
+app.loading = () => $('.loading-message').text("Loading results...");
 
 // ASSIGNS THE COLOUR TAB FOR EACH TYPE 
 app.assignType = function () { 
@@ -133,11 +121,10 @@ app.displayResults = (museums) => {
                 <a class="tel" href="tel:${tel}"><i class="fas fa-phone" aria-hidden="true"></i> ${tel}</a> 
                 <a class="url" href="${url}" rel="external" target="_blank">Visit Website</a>
             </li>`; 
-        for (let str = 0; str < typeFilter.length; str++) {  
-            if (name.includes(typeFilter[str])) { 
-                app.$searchResults.append(museumHtml);
-            }
-        }
+
+        typeFilter.forEach((str) => {  
+            name.includes(str) ? app.$searchResults.append(museumHtml): null; 
+        });
     })
     app.assignType();
     $('.scroll-up').show();
@@ -163,9 +150,7 @@ app.init = () => {
         evaluateCity();
         app.$typeForm.show();
     })  
-    app.$selectType.change(function() {   
-        app.getType();
-    })
+    app.$selectType.change(app.getType);
 }
 
 // DOCUMENT READY

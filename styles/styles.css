@@ -329,7 +329,8 @@ header {
   color: white;
   padding: 20px;
   height: 45vh;
-  background-image: linear-gradient(-225deg, #A8BFFF 0%, #884D80 100%);
+  background-image: url(../assets/new-york-city.jpg);
+  background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -372,7 +373,7 @@ h1 span {
 .header-text {
   font-size: 2.2rem;
   line-height: 38px;
-  font-weight: 300;
+  font-weight: 400;
   height: 100%;
   width: 90%;
   margin: 0 auto;
@@ -398,7 +399,7 @@ h1 span {
 }
 
 .header-text p:first-of-type {
-  font-weight: 400;
+  font-weight: 600;
   font-size: 2.8rem;
 }
 
