@@ -2,21 +2,21 @@ const app = {}; //NAMESPACED OBJECT
 
 // CACHED JQUERY SELECTORS 
 app.$cities = $('.click-thru span');
-app.$toggleUp = $('.arrows .fa-angle-up');
-app.$toggleDown = $('.arrows .fa-angle-down');
+app.$toggleUp = $('.button-up');
+app.$toggleDown = $('.button-down');
 app.$searchResults = $('ol');
-app.$cityForm = $('#city-filter');  
+app.$cityForm = $('#city-filter');
 app.$typeForm = $('.filter-bar');
-app.$selectType = $('input[type="radio"]');   
+app.$selectType = $('input[type="radio"]');
 app.$filterList = $('ul');
 
 // DO NOT DELETE!
 app.SOCRATA_API_TOKEN = [REDACTED];
-app.SOCRATA_API_URL =  'https://data.cityofnewyork.us/resource/fn6f-htvy.json'; 
+app.SOCRATA_API_URL = 'https://data.cityofnewyork.us/resource/fn6f-htvy.json';
 app.GOOGLEMAPS_API_URL = 'https://www.google.com/maps/search/?api=1&query=';//search function 
 
 // GLOBALLY DECLARED VARIABLES
-app.citiesArray = ["Brooklyn", "New York", "Queens", "Bronx", "Staten Island"];           
+app.citiesArray = ["Brooklyn", "New York", "Queens", "Bronx", "Staten Island"];
 app.classArray = ["show-all", "art", "science", "history", "cultural", "childrens"];
 app.classIcons = ["", "fa-palette", "fa-atom", "fa-landmark", "fa-globe", "fa-child"];
 app.numCities = app.citiesArray.length - 1;
@@ -26,29 +26,29 @@ $('button, label, i, input[type="submit"]').addClass('pointer');
 $('.scroll-up, .filter-bar').hide();
 
 //KEYWORDS TO FILTER AND ASSIGN MUSEUM TYPES
-app.strArray = [ 
-                [" "],
-                ["Art", "Galerie", "FIT", "Design", "Studio", "Guggenheim", "Illustration", "Collection", "Drawing", "Brooklyn Museum", "Media", "Moving Image", "Photography", "National Academy", "Nicholas Roerich", "Goethe-Institut", "Dahesh"],
-                ["Science", "Technology", "Transit", "Space", "Skyscraper", "Seaport"], 
-                ["History", "Heritage", "Memorial", "Historic", "Archival", "Archive", "Hall Of Fame", "Police", "Bowne", "Library", "Finance", "Alice Austen", "Defense", "Homestead", "Waterfront", "Alexander Hamilton", "Museum of the City", "Holocaust", "Fire", "Island", "Valentine-Varian", "Cortlandt", "Theodore Roosevelt", "Lighthouse", "Farm", "Old Stone", "Mansion", "Manor", "Rose Museum", "Vernon Hotel", "Fraunces", "Jackie Robinson", "Audubon "],
-                ["Culture", "Cultural", "Leo Baeck", "Yeshiva", "Americas", "Numismatic", "Hispanic", "Tenement", "Madame Tussauds", "Tolerance", "Anne Frank","Garibaldi-Meucci", "Jewish", "Asia", "Chinese", "Nordic", "Museo", "Ukrainian", "Italian", "Jazz", "Indian", "Wave Hill"],
-                ["Children's", "Discovery Times"]
-                ];
+app.strArray = [
+        [" "],
+        ["Art", "Galerie", "FIT", "Design", "Studio", "Guggenheim", "Illustration", "Collection", "Drawing", "Brooklyn Museum", "Media", "Moving Image", "Photography", "National Academy", "Nicholas Roerich", "Goethe-Institut", "Dahesh"],
+        ["Science", "Technology", "Transit", "Space", "Skyscraper", "Seaport"],
+        ["History", "Heritage", "Memorial", "Historic", "Archival", "Archive", "Hall Of Fame", "Police", "Bowne", "Library", "Finance", "Alice Austen", "Defense", "Homestead", "Waterfront", "Alexander Hamilton", "Museum of the City", "Holocaust", "Fire", "Island", "Valentine-Varian", "Cortlandt", "Theodore Roosevelt", "Lighthouse", "Farm", "Old Stone", "Mansion", "Manor", "Rose Museum", "Vernon Hotel", "Fraunces", "Jackie Robinson", "Audubon "],
+        ["Culture", "Cultural", "Leo Baeck", "Yeshiva", "Americas", "Numismatic", "Hispanic", "Tenement", "Madame Tussauds", "Tolerance", "Anne Frank", "Garibaldi-Meucci", "Jewish", "Asia", "Chinese", "Nordic", "Museo", "Ukrainian", "Italian", "Jazz", "Indian", "Wave Hill"],
+        ["Children's", "Discovery Times"]
+];
 let cityIndex = 0;
 let typeFilter = app.strArray[0];
 
 // FUNCTIONS
 // WHEN USER CLICKS UP IN CITY LIST
-app.toggleCityUp = () => {   
+app.toggleCityUp = () => {
     cityIndex > 0 ? cityIndex-- : cityIndex = app.numCities;
     app.displayCity();
 }
 
 // WHEN USER CLICKS DOWN IN CITY LIST
-app.toggleCityDown = () => {  
+app.toggleCityDown = () => {
     cityIndex < app.numCities ? cityIndex++ : cityIndex = 0;
     app.displayCity();
-} 
+}
 
 // AFTER USER TOGGLES THRU THE CITY LIST, DISPLAY THE NAME OF THE CITY (FROM ARRAY)
 app.displayCity = () => app.$cities.text(app.citiesArray[cityIndex]);
@@ -71,11 +71,11 @@ app.getByCity = (borough) => {
             "$limit" : 5000,
             "$$app_token" : app.SOCRATA_API_TOKEN
         }
-    }).then((results) => {   
+    }).then(results => {   
         app.$searchResults.empty();
         app.displayResults(results);   
         $('.loading-message').text("")
-    }).catch((error)=> { 
+    }).catch(error => { 
         console.log(error);
         $('.loading-message').text("Failed to load data. Please wait and try again");
     })
@@ -86,24 +86,22 @@ app.loading = () => $('.loading-message').text("Loading results...");
 
 // ASSIGNS THE COLOUR TAB FOR EACH TYPE 
 app.assignType = function () { 
-    for (let n = 1; n<6; n++) {
-        $(app.strArray[n]).each(function(){
+    app.strArray.forEach((item, n) => {
+        $(item).each(function(){
             $(".result-container:contains(" + this + ")").find('.icon').addClass(app.classArray[n]).find('.fas').addClass(app.classIcons[n]);
         })
-    }
+    }) 
 }
 
 app.getType = () => {
     const idAttribute = $('input[type="radio"]:checked').attr("id"); 
-    for (let i = 0 ; i < app.classArray.length; i++) {
-        idAttribute === app.classArray[i] ? typeFilter = app.strArray[i]: null; 
-    }
+    app.classArray.forEach((item, index) => { idAttribute === item ? typeFilter = app.strArray[index]: null }) 
     evaluateCity();
 }
 
 // DISPLAYS RESULTS FOR THE SELECTED CITY OR FILTER OPTION
 app.displayResults = (museums) => {
-    museums.forEach((museum) => {
+    museums.forEach(museum => {
         const name = museum.name;
         const address = museum.adress1;
         const tel = museum.tel;
@@ -112,19 +110,17 @@ app.displayResults = (museums) => {
         const encoded = encodeURI(`${museum.name}+${museum.adress1}`)
         const mapQuery = `${app.GOOGLEMAPS_API_URL}+${encoded}`
         const museumHtml = 
-            `<li class="result-container">
+            `<li class="result-container" data-aos="fade-up">
                 <div class="name">
                     <div class="icon"><i class="fas"></i></div>
                     <h3>${name}</h3>
                 </div>
-                <p class="address"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <a href="${mapQuery}" target="_blank">${address}, ${city}, NY </a></p>
+                <p class="address"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <a href="${mapQuery}">${address}, ${city}, NY </a></p>
                 <a class="tel" href="tel:${tel}"><i class="fas fa-phone" aria-hidden="true"></i> ${tel}</a> 
-                <a class="url" href="${url}" rel="external" target="_blank">Visit Website</a>
+                <a class="url" href="${url}" rel="external">Visit Website</a>
             </li>`; 
 
-        typeFilter.forEach((str) => {  
-            name.includes(str) ? app.$searchResults.append(museumHtml): null; 
-        });
+        typeFilter.forEach(str => name.includes(str) ? app.$searchResults.append(museumHtml): null);
     })
     app.assignType();
     $('.scroll-up').show();
@@ -141,8 +137,17 @@ app.init = () => {
     $('.filter-bar').focusin(function () {
         app.$filterList.show();
     }); 
+
     app.$toggleUp.on('click', app.toggleCityUp); 
     app.$toggleDown.on('click', app.toggleCityDown); 
+
+    app.$toggleUp.on('keydown', function(e){
+        (e.key === 'Enter') ? app.toggleCityUp() : null;
+    }); 
+    app.$toggleDown.on('keydown', function (e) {
+        (e.key === 'Enter') ? app.toggleCityDown(): null;
+    }); 
+
     app.$cityForm.on('submit', function(e) {
         e.preventDefault(); 
         typeFilter = app.strArray[0];
@@ -155,6 +160,7 @@ app.init = () => {
 
 // DOCUMENT READY
 $(() => {  
+    AOS.init();
     app.init();
 })  
 

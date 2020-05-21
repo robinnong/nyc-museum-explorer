@@ -235,6 +235,24 @@ html {
   overflow: hidden;
 }
 
+.visuallyHidden:not(:focus):not(:active) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
 /* GENERIC OVERRIDES */
 body,
 ul,
@@ -252,6 +270,9 @@ label {
 /* removes the list bullets */
 ul {
   list-style: none;
+  background-color: white;
+  -webkit-box-shadow: 0px 10px 20px 3px  #b4b4b440;
+          box-shadow: 0px 10px 20px 3px  #b4b4b440;
 }
 
 /* removes default syling from links and buttons */
@@ -264,6 +285,7 @@ button {
   border: none;
   background-color: none;
   font-family: inherit;
+  text-align: center;
 }
 
 /* default font size and smooth scrolling - DON'T CHANGE */
@@ -275,10 +297,16 @@ html {
 body {
   font-family: 'Open Sans', sans-serif;
   min-width: 350px;
+  font-size: 1.6rem;
 }
 
-.pointer {
-  cursor: pointer;
+i {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+input[type="radio"] {
+  display: none;
 }
 
 /* default wrapper - DON'T CHANGE */
@@ -740,6 +768,10 @@ footer {
   font-size: 1.4rem;
   height: 5vh;
   padding: 10px;
+}
+
+footer a {
+  text-decoration: underline;
 }
 
 /* media queries */

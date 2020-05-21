@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NYC Museum Explorer</title>
+    <meta name="description"
+        content="NYC Museum Explorer - Browse a comprehensive listing of museums in New York City. Sort by type, view contact, address and site information for each museum."> 
     <!-- link to Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap" rel="stylesheet">  
     <!-- link to fontawesome -->
     <script src="https://kit.fontawesome.com/f3369905b3.js" crossorigin="anonymous"></script>
-    <!-- link to animations -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <!-- link to Animate On Scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">  
     <!-- link to styles -->
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
@@ -18,41 +20,42 @@
     <header id="home">
         <nav>
             <h1>New York City<span>Museum Explorer</span></h1>
-            <a href="https://github.com/robinnong/nyc-museum-explorer" rel="external" aria-label="Go to GitHub repository to view project code">
+            <a href="https://github.com/robinnong/nyc-museum-explorer" rel="external"
+                aria-label="Go to GitHub repository to view project code">
                 <i class="fab fa-github" aria-hidden="true"></i>
             </a>
         </nav>
-        <div class="header-text">   
+        <div class="header-text">
             <div>
-                <p>Explore a complete listing of New York City's museums and galleries.</p> 
-                <p>Search by borough.</p> 
+                <p>Explore a complete listing of New York City's museums and galleries.</p>
+                <p>Search by borough.</p>
             </div>
         </div>
     </header>
-    <main>  
+    <main>
         <div class="container wrapper">
             <h2>Where do you want to go?</h2>
             <form action="#" id="city-filter" name="city-filter">
                 <div class="click-thru">
                     <span></span>
                     <div class="arrows">
-                        <button type="button" aria-label="Toggle to previous city in list">
+                        <button class="button-up" type="button" aria-label="Toggle to previous city in list">
                             <i class="fas fa-angle-up" aria-hidden="true"></i>
                         </button>
-                        <button type="button" aria-label="Toggle to next city in list">
+                        <button class="button-down" type="button" aria-label="Toggle to next city in list">
                             <i class="fas fa-angle-down" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
                 <input type="submit" value="Search Museums">
-            </form> 
+            </form>
         </div>
         <div class="content wrapper">
-            <form action="#" class="filter-bar"> 
+            <div class="filter-bar"> 
                 <button type="button" class="toggle-menu">Filter by Type 
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
                 </button>
-                <ul class="animated fadeIn faster">
+                <ul class="type-list">
                     <li>
                         <input type="radio" name="filter" id="show-all" class="show-all" value="" checked="checked">
                         <label for="show-all">Show All</label>
@@ -78,7 +81,7 @@
                         <label for="childrens"><i class="fas fa-circle" aria-hidden="true"></i> Children's</label>   
                     </li>
                 </ul>
-            </form>  
+            </div>  
             <p class="loading-message"></p>
             <ol>
             </ol>
@@ -92,7 +95,8 @@
     <footer> 
         <p>©2020 Robin Nong. Photo by <a href="https://www.pexels.com/@vinta-supply-co-nyc-268013">Vinta Supply Co. | NYC</a> from Pexels.</p>
     </footer>
-    <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script> 
+    <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>   
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
