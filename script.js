@@ -110,7 +110,7 @@ app.displayResults = (museums) => {
         const encoded = encodeURI(`${museum.name}+${museum.adress1}`)
         const mapQuery = `${app.GOOGLEMAPS_API_URL}+${encoded}`
         const museumHtml = 
-            `<li class="result-container" data-aos="fade-up">
+            `<li class="result-container" data-aos="fade">
                 <div class="name">
                     <div class="icon"><i class="fas"></i></div>
                     <h3>${name}</h3>

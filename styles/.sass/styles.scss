@@ -1,11 +1,7 @@
 @import 'setup';
 @import 'global';
 
-/* FONT SIZING */
-input[type="submit"],
-.filter-bar,
-.result-container {font-size: 1.5rem;}
-
+/* FONT SIZING */  
 h1,
 h2,
 h3,
@@ -13,21 +9,15 @@ h3,
 
 h2,
 h3,
+.url,
 .click-thru,
-input[type="submit"], 
-.result-container a {font-weight: 600;} 
+button[type="submit"] {font-weight: 600;} 
 
 h2,
 .url,
 .container form,
 .filter-bar,
-footer {text-align: center;}
-
-button{
-	border: none;
-	font-family: inherit;
-	background-color: inherit;
-}
+footer {text-align: center;} 
 
 /* HEADER START */
 header {
@@ -35,7 +25,7 @@ header {
 	padding: 20px;   
 	height: 45vh;  
 	background-image: url(../assets/new-york-city.jpg);
-	background-position: bottom;
+	background-position: top;
 	background-size: cover; 
     background-repeat: no-repeat;
         nav {
@@ -52,12 +42,12 @@ header {
 }   
 
 h1 { 
-	letter-spacing: 1.8px; 
-	display: flex;
+	letter-spacing: 2px; 
+	display: flex; 
 	flex-direction: column;
-	span {
-		font-size: 1.7rem;
-		font-weight: 300;
+	span { 
+		font-size: 1.6rem;
+		font-weight: 600;
 	}
 }
 	
@@ -72,7 +62,7 @@ h1 {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: baseline; 
+	align-items: baseline;  
 		& > div {
 			margin: 0 auto;
 			min-width: 60%; 
@@ -91,7 +81,7 @@ main {
 
 .container {  
 	box-shadow: 0px 10px 30px 10px #b4b4b440; 
-	border-radius: 10px;
+	border-radius: 5px;
 	padding: 30px;  
 	margin-bottom: 50px;
 	background-color: white;  
@@ -110,7 +100,7 @@ main {
 
 /* CLICK THRU */
 .click-thru,
-input[type="submit"] {
+button[type="submit"] {
 	height: 55px;
 	width: 225px;
 	margin: 0 10px;
@@ -127,9 +117,8 @@ input[type="submit"] {
             color: #3c3c3c; 
             margin: auto;
         }
-        i { 
-            font-size: 2.5rem;
-            transition: all 0.2s;  
+        button { 
+            font-size: 2.5rem; 
             &:hover,
             &:focus {color: #3f3fc2;}
     }
@@ -143,19 +132,14 @@ input[type="submit"] {
 	flex-direction: column;
 }
 
-input[type="submit"] {
-	background-color: #f0746f; 
-	font-family: inherit;
+button[type="submit"] {
+	background-color: #305DC0;  
+	font-size: 1.8rem; 
 	color: white;
-	padding: 0 20px;
-	border: 1.5px solid #f0746f; 
-	transition-property: all;
-    transition-duration: 0.3s;
+	padding: 0 20px; 
+	border: none;
         &:focus,
-        &:hover {
-            background-color: #ff7f7b;  
-            border: 1.5px solid #ff7f7b; 
-    } 
+        &:hover {background-color: #406ccc;} 
 } 
 
 .content {padding-top: 150px;}
@@ -173,6 +157,7 @@ input[type="submit"] {
 input[type="radio"] {display: none;}  
 
 .toggle-menu { 
+	background-color:white;
 	&:hover i,
 	&:focus i {transform: rotate(180deg);}
 }
@@ -211,10 +196,9 @@ ol {padding-bottom: 150px;}
 
 /* hover effect on links */
 .content a:not(:last-of-type):hover,
-.content a:not(:last-of-type):focus {color: #713fc2;}  
+.content a:not(:last-of-type):focus {color: #305DC0;}  
 
-.loading-message {
-	font-size: 1.6rem;
+.loading-message { 
 	font-style: italic;
 	text-align: center;
 	margin-bottom: 10px;
@@ -222,16 +206,16 @@ ol {padding-bottom: 150px;}
 
 .result-container {
 	margin: 20px 0;
-	padding: 15px;
+	padding: 20px 15px;
 	display: flex; 
 	justify-content: space-between; 
 	align-items: center;
 	min-height: 50px;   
 	box-shadow: 0px 0px 5px 5px #b4b4b436; 
-	border-radius: 10px;
+	border-radius: 5px;
         i {
             font-size: 1.3rem;
-            color: #713fc2;
+            color: #305DC0;
     }
 }
 
@@ -258,14 +242,23 @@ ol {padding-bottom: 150px;}
 
 .address { 
 	flex: 0 1 35%;   
-    a {text-decoration: underline;}
+    a { 
+		border-bottom: 1px solid transparent;
+		transition: all 0.3s;
+		color: #305DC0;
+		&:hover,
+		&:focus {border-bottom: 1px solid #305DC0;}
+	}
 } 
 
-.tel {flex: 1 0 150px;} 
+.tel {
+	margin-right: 20px;
+	flex: 1 0 150px;
+} 
 
 .address,
 .tel {
-	color: #646464;
+	color: #1b1b1b;
 	padding: 0 10px;
 }
 
@@ -273,14 +266,14 @@ ol {padding-bottom: 150px;}
 	flex: 1 0 140px;
 	text-align: center;
 	background-color: white;
-	padding: 8px 10px;  
-	border: 0.5px solid #b4b4b4; 
+	padding: 8px 10px;   
+	border: 1.5px solid #305DC0;
 	border-radius: 5px;
 	transition: all 0.2s; 
 	&:focus ,
 	&:hover {
-		background-color: #713fc2;
-		border: 0.5px solid #713fc2;
+		background-color: #305DC0;
+		border: 1.5px solid #305DC0;
 		color: white;
 	}
 }
@@ -299,8 +292,7 @@ ol {padding-bottom: 150px;}
 /* scroll to the top button */  
 .scroll-up {  
     background-color: black;
-    color: white;  
-    font-size: 1.6rem;
+    color: white;   
 
     width: 30px;
     height: 30px;   
