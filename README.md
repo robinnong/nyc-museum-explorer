@@ -5,7 +5,7 @@ The project pulls data from <a href="https://dev.socrata.com/foundry/data.cityof
 
 Project features: 
 - Fetching API data, sorting, and displaying it in a presentable way
-- Demonstrated understanding of array methods to assign the museum type as a colour and icon
+- Demonstrated understanding of array methods to assign each museum type as a colour and icon
 - Use of the Animate on Scroll library to fade in list results
  
 Try it out <a href="https://nycmuseums.netlify.com">here!</a>
