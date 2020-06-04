@@ -24,11 +24,14 @@ a {
 	color: inherit;
 	text-decoration: none;
 }
- 
+input,
 button {
-	border: none;
-	background-color: none;
 	font-family: inherit;
+	border: none;
+}
+
+button {
+	background-color: none; 
 	text-align: center;
 	transition: all 0.3s; 
 } 
@@ -41,7 +44,7 @@ html {
 
 body {
 	font-family: 'Open Sans', sans-serif;
-	min-width: 350px; 
+	min-width: 320px; 
 	font-size: 1.6rem; 
 } 
 
@@ -51,7 +54,7 @@ input[type="radio"] {display: none;}
 
 /* default wrapper - DON'T CHANGE */
 .wrapper {
-	width: 85%;
+	width: 90%;
 	max-width: 1050px;
 	margin: 0 auto;
 }

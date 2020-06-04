@@ -281,10 +281,14 @@ a {
   text-decoration: none;
 }
 
+input,
 button {
-  border: none;
-  background-color: none;
   font-family: inherit;
+  border: none;
+}
+
+button {
+  background-color: none;
   text-align: center;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
@@ -298,7 +302,7 @@ html {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  min-width: 350px;
+  min-width: 320px;
   font-size: 1.6rem;
 }
 
@@ -313,7 +317,7 @@ input[type="radio"] {
 
 /* default wrapper - DON'T CHANGE */
 .wrapper {
-  width: 85%;
+  width: 90%;
   max-width: 1050px;
   margin: 0 auto;
 }
@@ -362,9 +366,15 @@ header nav {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+}
+
+header nav div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 header a {
@@ -421,6 +431,34 @@ h1 span {
   font-size: 2.8rem;
 }
 
+.search-form {
+  margin-right: 20px;
+}
+
+.search-form input,
+.search-form button {
+  background-color: transparent;
+}
+
+.search-form input {
+  color: white;
+  border-bottom: 1px solid #c2c2c2;
+}
+
+.search-form input:focus {
+  border-bottom: 1px solid #ffffff;
+}
+
+.search-form input:focus + button {
+  color: #ffffff;
+}
+
+.search-form button {
+  color: #c2c2c2;
+  font-size: 2.2rem;
+  margin-left: 5px;
+}
+
 main {
   min-height: 50vh;
   padding-bottom: 50px;
@@ -457,7 +495,7 @@ main {
 
 /* CLICK THRU */
 .click-thru,
-button[type="submit"] {
+.container button[type="submit"] {
   height: 55px;
   width: 225px;
   margin: 0 10px;
@@ -465,7 +503,6 @@ button[type="submit"] {
 }
 
 .click-thru {
-  border: 1px solid #f1f1f1;
   background-color: #f1f1f1;
   position: relative;
   display: -webkit-box;
@@ -479,7 +516,12 @@ button[type="submit"] {
   margin: auto;
 }
 
+.click-thru i {
+  display: block;
+}
+
 .click-thru button {
+  background-color: transparent;
   font-size: 2.5rem;
 }
 
@@ -491,6 +533,7 @@ button[type="submit"] {
   position: absolute;
   right: 10px;
   top: 0;
+  bottom: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -498,9 +541,12 @@ button[type="submit"] {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-button[type="submit"] {
+.container button[type="submit"] {
   background-color: #305DC0;
   font-size: 1.8rem;
   color: white;
@@ -508,7 +554,7 @@ button[type="submit"] {
   border: none;
 }
 
-button[type="submit"]:focus, button[type="submit"]:hover {
+.container button[type="submit"]:focus, .container button[type="submit"]:hover {
   background-color: #406ccc;
 }
 
@@ -604,8 +650,20 @@ ol {
 }
 
 .loading-message {
-  font-style: italic;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
   text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  color: #686868;
+}
+
+.loading-message p:first-of-type {
+  color: black;
+  font-size: 2.4rem;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 
@@ -800,7 +858,7 @@ footer a {
 
 @media (max-width: 768px) {
   .click-thru,
-  input[type="submit"] {
+  button[type="submit"] {
     margin: 5px 10px;
   }
   .result-container p,
@@ -816,20 +874,28 @@ footer a {
 }
 
 @media (max-width: 480px) {
-  h1,
-  h2,
+  h1 {
+    font-size: 1.6rem;
+  }
+  h2 {
+    font-size: 1.7rem;
+  }
   h3 {
     font-size: 1.8rem;
   }
   h1 span {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
   header {
     height: auto;
   }
   .header-text {
     font-size: 2rem;
-    padding: 60px 0;
+    padding: 50px 0 60px 0;
+  }
+  .header-text p:first-of-type {
+    font-size: 2.4rem;
+    line-height: 3.2rem;
   }
   .container {
     padding: 30px;
@@ -841,7 +907,11 @@ footer a {
     margin-left: 85vw;
   }
   .click-thru,
-  input[type="submit"] {
+  button[type="submit"] {
+    height: 50px;
+  }
+  button[type="submit"] {
+    font-size: 1.6rem;
     margin: 5px 0;
   }
 }
