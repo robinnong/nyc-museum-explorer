@@ -1,3 +1,4 @@
+import filterWords from './filterWords.js';
 const app = {}; //NAMESPACED OBJECT
 
 // CACHED JQUERY SELECTORS 
@@ -9,6 +10,7 @@ app.$cityForm = $('#city-filter');
 app.$typeForm = $('.filter-bar');
 app.$selectType = $('input[type="radio"]');
 app.$filterList = $('ul');
+app.$search = $('.search-form'); 
 
 // DO NOT DELETE!
 app.SOCRATA_API_TOKEN = [REDACTED];
@@ -25,17 +27,9 @@ app.numCities = app.citiesArray.length - 1;
 $('button, label, i, input[type="submit"]').addClass('pointer');
 $('.scroll-up, .filter-bar').hide();
 
-//KEYWORDS TO FILTER AND ASSIGN MUSEUM TYPES
-app.strArray = [
-        [" "],
-        ["Art", "Galerie", "FIT", "Design", "Studio", "Guggenheim", "Illustration", "Collection", "Drawing", "Brooklyn Museum", "Media", "Moving Image", "Photography", "National Academy", "Nicholas Roerich", "Goethe-Institut", "Dahesh"],
-        ["Science", "Technology", "Transit", "Space", "Skyscraper", "Seaport"],
-        ["History", "Heritage", "Memorial", "Historic", "Archival", "Archive", "Hall Of Fame", "Police", "Bowne", "Library", "Finance", "Alice Austen", "Defense", "Homestead", "Waterfront", "Alexander Hamilton", "Museum of the City", "Holocaust", "Fire", "Island", "Valentine-Varian", "Cortlandt", "Theodore Roosevelt", "Lighthouse", "Farm", "Old Stone", "Mansion", "Manor", "Rose Museum", "Vernon Hotel", "Fraunces", "Jackie Robinson", "Audubon "],
-        ["Culture", "Cultural", "Leo Baeck", "Yeshiva", "Americas", "Numismatic", "Hispanic", "Tenement", "Madame Tussauds", "Tolerance", "Anne Frank", "Garibaldi-Meucci", "Jewish", "Asia", "Chinese", "Nordic", "Museo", "Ukrainian", "Italian", "Jazz", "Indian", "Wave Hill"],
-        ["Children's", "Discovery Times"]
-];
+//KEYWORDS TO FILTER AND ASSIGN MUSEUM TYPES  
 let cityIndex = 0;
-let typeFilter = app.strArray[0];
+let typeFilter = filterWords[0];
 
 // FUNCTIONS
 // WHEN USER CLICKS UP IN CITY LIST
@@ -75,18 +69,41 @@ app.getByCity = (borough) => {
         app.$searchResults.empty();
         app.displayResults(results);   
         $('.loading-message').text("")
-    }).catch(error => { 
-        console.log(error);
-        $('.loading-message').text("Failed to load data. Please wait and try again");
+    }).catch(() => {  
+        $('.loading-message').html(`<p>Failed to load data. Please wait and try again</p>`);
+    })
+};
+
+//API CALL
+app.getBySearch = (query) => {
+    $.ajax({
+        url: app.SOCRATA_API_URL,
+        method: "GET",
+        dataType: 'json',
+        data: { 
+            "$q": query,
+            "$limit": 5000,
+            "$$app_token": app.SOCRATA_API_TOKEN
+        }
+    }).then(results => {
+        app.$searchResults.empty();
+        $('.loading-message').empty();
+        if (results.length > 0) {
+            app.displayResults(results);
+        } else {
+            $('.loading-message').html(`<p>Sorry! ☹</p><p>Your search for "${query}" didn't return any results.</p>`);
+        }
+    }).catch(() => { 
+        $('.loading-message').html(`<p>Failed to load data. Please wait and try again</p>`);
     })
 };
 
 // DISPLAY LOADING MESSAGE 
-app.loading = () => $('.loading-message').text("Loading results...");
+app.loading = () => $('.loading-message').html(`<p>Loading results...</p>`);
 
 // ASSIGNS THE COLOUR TAB FOR EACH TYPE 
 app.assignType = function () { 
-    app.strArray.forEach((item, n) => {
+    filterWords.forEach((item, n) => {
         $(item).each(function(){
             $(".result-container:contains(" + this + ")").find('.icon').addClass(app.classArray[n]).find('.fas').addClass(app.classIcons[n]);
         })
@@ -95,7 +112,7 @@ app.assignType = function () {
 
 app.getType = () => {
     const idAttribute = $('input[type="radio"]:checked').attr("id"); 
-    app.classArray.forEach((item, index) => { idAttribute === item ? typeFilter = app.strArray[index]: null }) 
+    app.classArray.forEach((item, index) => { idAttribute === item ? typeFilter = filterWords[index]: null }) 
     evaluateCity();
 }
 
@@ -107,6 +124,7 @@ app.displayResults = (museums) => {
         const tel = museum.tel;
         const url = museum.url; 
         const city = museum.city;
+        // Encoding the Google Maps search query
         const encoded = encodeURI(`${museum.name}+${museum.adress1}`)
         const mapQuery = `${app.GOOGLEMAPS_API_URL}+${encoded}`
         const museumHtml = 
@@ -116,7 +134,7 @@ app.displayResults = (museums) => {
                     <h3>${name}</h3>
                 </div>
                 <p class="address"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <a href="${mapQuery}">${address}, ${city}, NY </a></p>
-                <a class="tel" href="tel:${tel}"><i class="fas fa-phone" aria-hidden="true"></i> ${tel}</a> 
+                ${tel != "" ? `<a class="tel" href="tel:${tel}"><i class="fas fa-phone" aria-hidden="true"></i> ${tel}</a>` : `<p class="tel"></p>`}
                 <a class="url" href="${url}" rel="external">Visit Website</a>
             </li>`; 
 
@@ -138,7 +156,9 @@ app.init = () => {
         app.$filterList.show();
     }); 
 
+    // On clicking the up arrow, move up the in the list of cities
     app.$toggleUp.on('click', app.toggleCityUp); 
+    // On clicking the up arrow, move up the down the list of cities
     app.$toggleDown.on('click', app.toggleCityDown); 
 
     app.$toggleUp.on('keydown', function(e){
@@ -148,18 +168,27 @@ app.init = () => {
         (e.key === 'Enter') ? app.toggleCityDown(): null;
     }); 
 
+    // On submitting the selected city 
     app.$cityForm.on('submit', function(e) {
         e.preventDefault(); 
-        typeFilter = app.strArray[0];
+        typeFilter = filterWords[0];
         $('input[type="radio"]:checked').prop("checked", false); //default user selection to Show All
         evaluateCity();
         app.$typeForm.show();
     })  
     app.$selectType.change(app.getType);
+
+    // On submitting a search query
+    app.$search.on('submit', function(e) {
+        e.preventDefault();
+        const queryString = $('#search').val().trim();  
+        app.getBySearch(queryString);
+    })
 }
 
 // DOCUMENT READY
 $(() => {  
+    // Animate on Scroll library
     AOS.init();
     app.init();
 })  
