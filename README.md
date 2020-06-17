@@ -8,5 +8,6 @@ Project features:
 - Demonstrated understanding of array methods to assign each museum type as a colour and icon
 - Use of the Animate on Scroll library to fade in list results
 - Creating a unique Google Maps search query for each museum and displaying it as a link
+- User can input a search query to the search bar
  
 Try it out <a href="https://nycmuseums.netlify.com">here!</a>
