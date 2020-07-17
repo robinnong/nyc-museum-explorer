@@ -11,7 +11,8 @@ Try it out <a href="https://nycmuseums.netlify.com">here!</a>
 - Fetching RESTful API data, sorting, and displaying it in a presentable way
 - Demonstrated understanding of array methods to assign each museum type as a colour and icon 
 - Creating a unique Google Maps search query for each museum and displaying it as a link
+- Responsive on all screen sizes
+- User can input a search query to the search bar 
 
 ## To-do
 - Add a Maps feature that pins the museum location on a map using coordinates provided by the museum API
-
