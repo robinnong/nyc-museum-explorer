@@ -301,6 +301,7 @@ html {
 }
 
 body {
+  position: relative;
   font-family: 'Open Sans', sans-serif;
   min-width: 320px;
   font-size: 1.6rem;
@@ -351,13 +352,13 @@ header {
   color: white;
   padding: 20px;
   height: 45vh;
-  background-image: url(../assets/new-york-city.jpg);
-  background-position: top;
+  min-height: 320px;
+  background: -webkit-gradient(linear, left top, left bottom, from(black), color-stop(40%, rgba(0, 0, 0, 0))), url(../assets/new-york-city.jpg) no-repeat top;
+  background: linear-gradient(black, rgba(0, 0, 0, 0) 40%), url(../assets/new-york-city.jpg) no-repeat top;
   background-size: cover;
-  background-repeat: no-repeat;
 }
 
-header nav {
+.header-bar {
   max-width: 1500px;
   margin: 0 auto;
   display: -webkit-box;
@@ -366,20 +367,18 @@ header nav {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-header nav div {
+.header-bar div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-header a {
-  font-size: 2.5rem;
-  display: inline-block;
 }
 
 h1 {
@@ -398,9 +397,18 @@ h1 span {
   font-weight: 600;
 }
 
+.logo-container {
+  min-width: 50px;
+}
+
+.alt-logo {
+  font-size: 3.2rem;
+  margin-right: 10px;
+}
+
 .header-text {
   font-size: 2.2rem;
-  line-height: 38px;
+  line-height: 3.8rem;
   font-weight: 400;
   height: 100%;
   width: 90%;
@@ -432,35 +440,41 @@ h1 span {
 }
 
 .search-form {
-  margin-right: 20px;
+  position: relative;
 }
 
-.search-form input,
-.search-form button {
+.search-form input, .search-form button {
   background-color: transparent;
 }
 
 .search-form input {
+  width: 200px;
   color: white;
-  border-bottom: 1px solid #c2c2c2;
+  padding: 5px 15px;
+  border-radius: 25px;
+  border: 1px solid #c2c2c2;
 }
 
 .search-form input:focus {
-  border-bottom: 1px solid #ffffff;
+  border: 1px solid white;
 }
 
 .search-form input:focus + button {
-  color: #ffffff;
+  color: white;
 }
 
 .search-form button {
-  color: #c2c2c2;
-  font-size: 2.2rem;
-  margin-left: 5px;
+  position: absolute;
+  background: url("/assets/search-24px.svg") no-repeat center;
+  background-size: contain;
+  right: 10px;
+  top: 0;
+  bottom: 0;
+  width: 25px;
 }
 
 main {
-  min-height: 50vh;
+  min-height: 55vh;
   padding-bottom: 50px;
   position: relative;
 }
@@ -495,7 +509,7 @@ main {
 
 /* CLICK THRU */
 .click-thru,
-.container button[type="submit"] {
+.click-thru + button {
   height: 55px;
   width: 225px;
   margin: 0 10px;
@@ -546,7 +560,7 @@ main {
           justify-content: center;
 }
 
-.container button[type="submit"] {
+.click-thru + button {
   background-color: #305DC0;
   font-size: 1.8rem;
   color: white;
@@ -554,7 +568,7 @@ main {
   border: none;
 }
 
-.container button[type="submit"]:focus, .container button[type="submit"]:hover {
+.click-thru + button:focus, .click-thru + button:hover {
   background-color: #406ccc;
 }
 
@@ -563,9 +577,7 @@ main {
 }
 
 .filter-bar {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -577,6 +589,10 @@ main {
   width: 120px;
   margin: 0 auto;
   position: relative;
+}
+
+.filter-bar ul {
+  display: none;
 }
 
 input[type="radio"] {
@@ -816,8 +832,11 @@ ol {
 }
 
 footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   font-size: 1.4rem;
-  height: 5vh;
   padding: 10px;
 }
 
@@ -858,7 +877,7 @@ footer a {
 
 @media (max-width: 768px) {
   .click-thru,
-  button[type="submit"] {
+  .click-thru + button {
     margin: 5px 10px;
   }
   .result-container p,
@@ -873,9 +892,25 @@ footer a {
   }
 }
 
+@media (max-width: 550px) {
+  header {
+    height: auto;
+  }
+  .header-text {
+    font-size: 1.8rem;
+    margin: 0;
+    padding: 50px 0 60px 0;
+  }
+  .header-text p:first-of-type {
+    font-size: 2.2rem;
+    line-height: 3.2rem;
+  }
+}
+
 @media (max-width: 480px) {
   h1 {
-    font-size: 1.6rem;
+    height: 0;
+    overflow: hidden;
   }
   h2 {
     font-size: 1.7rem;
@@ -885,17 +920,6 @@ footer a {
   }
   h1 span {
     font-size: 1.4rem;
-  }
-  header {
-    height: auto;
-  }
-  .header-text {
-    font-size: 2rem;
-    padding: 50px 0 60px 0;
-  }
-  .header-text p:first-of-type {
-    font-size: 2.4rem;
-    line-height: 3.2rem;
   }
   .container {
     padding: 30px;
@@ -907,11 +931,16 @@ footer a {
     margin-left: 85vw;
   }
   .click-thru,
-  button[type="submit"] {
+  .click-thru + button {
+    width: 100%;
     height: 50px;
+    margin: 0;
   }
-  button[type="submit"] {
+  .click-thru {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+  }
+  .click-thru + button {
     font-size: 1.6rem;
-    margin: 5px 0;
   }
 }

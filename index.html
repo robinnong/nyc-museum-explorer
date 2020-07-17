@@ -10,30 +10,25 @@
     <!-- link to Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">  
     <!-- link to fontawesome -->
-    <script src="https://kit.fontawesome.com/f3369905b3.js" crossorigin="anonymous"></script>
-    <!-- link to Animate On Scroll -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">  
+    <script src="https://kit.fontawesome.com/f3369905b3.js" crossorigin="anonymous"></script> 
     <!-- link to styles -->
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
     <header id="home">
-        <nav>
-            <h1>New York City<span>Museum Explorer</span></h1>
+        <div class="header-bar">
+            <div class="logo-container">
+                <i class="alt-logo far fa-building" aria-hidden="true"></i>
+                <h1>New York City<span>Museum Explorer</span></h1>
+            </div>
             <div>
                 <form action="" class="search-form">
                     <label for="search" class="sr-only">Search</label>
                     <input type="text" id="search" placeholder="Search">
-                    <button type="submit" aria-label="Search">
-                        <i class="fas fa-search" aria-hidden="true"></i>
-                    </button>
-                </form>
-                <a href="https://github.com/robinnong/nyc-museum-explorer" rel="external"
-                    aria-label="Go to GitHub repository to view project code">
-                    <i class="fab fa-github" aria-hidden="true"></i>
-                </a>
+                    <button type="submit" class="toggle-search" aria-label="Search"></button>
+                </form> 
             </div>
-        </nav>
+        </div>
         <div class="header-text">
             <div>
                 <p>Explore a complete listing of New York City's museums and galleries.</p>
@@ -102,7 +97,7 @@
         </button>
     </main>
     <footer> 
-        <p>©2020 Robin Nong. Photo by <a href="https://www.pexels.com/@peter-olexa-2214257">Peter Olexa</a> from Pexels.</p>
+        <p>©2020 Robin Nong. Photo by <a href="https://www.pexels.com/@peter-olexa-2214257" rel="external">Peter Olexa</a>.</p>
     </footer>
     <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>   
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
