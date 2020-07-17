@@ -24,12 +24,13 @@ app.classIcons = ["", "fa-palette", "fa-atom", "fa-landmark", "fa-globe", "fa-ch
 app.numCities = app.citiesArray.length - 1;
 
 // VISIBILITY
-$('button, label, i, input[type="submit"]').addClass('pointer');
+$('button, label, input[type="submit"]').addClass('pointer');
 $('.scroll-up, .filter-bar').hide();
 
 //KEYWORDS TO FILTER AND ASSIGN MUSEUM TYPES  
 let cityIndex = 0;
 let typeFilter = filterWords[0];
+let cachedResults = [];
 
 // FUNCTIONS
 // WHEN USER CLICKS UP IN CITY LIST
@@ -67,6 +68,7 @@ app.getByCity = (borough) => {
         }
     }).then(results => {   
         app.$searchResults.empty();
+        cachedResults = results; 
         app.displayResults(results);   
         $('.loading-message').text("")
     }).catch(() => {  
@@ -88,6 +90,8 @@ app.getBySearch = (query) => {
     }).then(results => {
         app.$searchResults.empty();
         $('.loading-message').empty();
+
+        cachedResults = results; 
         if (results.length > 0) {
             app.displayResults(results);
         } else {
@@ -103,17 +107,20 @@ app.loading = () => $('.loading-message').html(`<p>Loading results...</p>`);
 
 // ASSIGNS THE COLOUR TAB FOR EACH TYPE 
 app.assignType = function () { 
-    filterWords.forEach((item, n) => {
+    filterWords.forEach((item, index) => {
         $(item).each(function(){
-            $(".result-container:contains(" + this + ")").find('.icon').addClass(app.classArray[n]).find('.fas').addClass(app.classIcons[n]);
+            $(".result-container:contains(" + this + ")").find('.icon').addClass(app.classArray[index]).find('.fas').addClass(app.classIcons[index]);
         })
     }) 
 }
 
+// GET THE USER'S FILTER SELECTION
 app.getType = () => {
     const idAttribute = $('input[type="radio"]:checked').attr("id"); 
     app.classArray.forEach((item, index) => { idAttribute === item ? typeFilter = filterWords[index]: null }) 
-    evaluateCity();
+    // Filter through the previous search results using the selected museum type and display the results again on the page
+    app.$searchResults.empty();
+    app.displayResults(cachedResults); 
 }
 
 // DISPLAYS RESULTS FOR THE SELECTED CITY OR FILTER OPTION
@@ -128,7 +135,7 @@ app.displayResults = (museums) => {
         const encoded = encodeURI(`${museum.name}+${museum.adress1}`)
         const mapQuery = `${app.GOOGLEMAPS_API_URL}+${encoded}`
         const museumHtml = 
-            `<li class="result-container" data-aos="fade">
+            `<li class="result-container">
                 <div class="name">
                     <div class="icon"><i class="fas"></i></div>
                     <h3>${name}</h3>
@@ -144,9 +151,14 @@ app.displayResults = (museums) => {
     $('.scroll-up').show();
 }
 
+app.resetSearch = () => {
+    app.$typeForm.show(); 
+    typeFilter = filterWords[0];
+    $('input[type="radio"]:checked').prop("checked", false);
+}
+
 // INITIALIZE
-app.init = () => { 
-    app.$filterList.hide();
+app.init = () => {  
     app.displayCity(0);
     // EVENTS
     $('.filter-bar').hover(function(){
@@ -168,28 +180,27 @@ app.init = () => {
         (e.key === 'Enter') ? app.toggleCityDown(): null;
     }); 
 
-    // On submitting the selected city 
+    // On submitting the selected borough 
     app.$cityForm.on('submit', function(e) {
         e.preventDefault(); 
-        typeFilter = filterWords[0];
-        $('input[type="radio"]:checked').prop("checked", false); //default user selection to Show All
+        app.resetSearch();
         evaluateCity();
-        app.$typeForm.show();
     })  
+
+    // On selecting a filter type
     app.$selectType.change(app.getType);
 
     // On submitting a search query
     app.$search.on('submit', function(e) {
         e.preventDefault();
-        const queryString = $('#search').val().trim();  
-        app.getBySearch(queryString);
+        app.resetSearch();
+        const userQuery = $('#search').val().trim();  
+        app.getBySearch(userQuery);
     })
 }
 
 // DOCUMENT READY
-$(() => {  
-    // Animate on Scroll library
-    AOS.init();
+$(() => {   
     app.init();
 })  
 
